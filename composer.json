@@ -4,6 +4,7 @@
     "type": "project",
     "description": "Bluejacket Core Application",
     "keywords": ["bluejacket","core","framework","php"],
+    "type": "library",
     "authors": [
         {
             "name": "Oytun OZDEMIR",
