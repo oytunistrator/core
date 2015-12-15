@@ -4,7 +4,7 @@
     "type": "project",
     "description": "Bluejacket Core Application",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { "Bluejacket\\": "src/" }
     },
     "require": {
         "php": ">=5.4",
