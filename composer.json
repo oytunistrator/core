@@ -4,16 +4,23 @@
     "type": "project",
     "description": "Bluejacket Core Application",
     "keywords": ["bluejacket","core","framework","php"],
+    "authors": [
+        {
+            "name": "Oytun OZDEMIR",
+            "email": "oytunozdemir@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-0": { "Bluejacket\\": "src/" }
     },
     "require": {
         "php": ">=5.4",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.2.*",
-        "twig/extensions": "1.0.*"
+        "doctrine/orm": "*",
+        "doctrine/doctrine-bundle": "*",
+        "twig/extensions": "*"
     },
     "config": {
         "bin-dir": "bin"
-    }
+    },
+    "minimum-stability": "dev"
 }
