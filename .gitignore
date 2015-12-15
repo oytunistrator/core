@@ -3,3 +3,4 @@ logs/
 *.log
 bin/*
 .DS_Store
+composer.lock
