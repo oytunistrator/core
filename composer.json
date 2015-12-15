@@ -1,8 +1,9 @@
 {
-    "name": "bluejacket-core",
+    "name": "bluejacket-labs/core",
     "license": "MIT",
     "type": "project",
     "description": "Bluejacket Core Application",
+    "keywords": ["bluejacket","core","framework","php"],
     "autoload": {
         "psr-0": { "Bluejacket\\": "src/" }
     },
