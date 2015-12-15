@@ -2,7 +2,7 @@
 /**
  * Debug class.
  */
-namespace Framework\Core;
+namespace Bluajacket\Framework\Core;
 class Debug
 {
 	/**

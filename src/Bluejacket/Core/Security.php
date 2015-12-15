@@ -2,7 +2,7 @@
 /**
  * Security class.
  */
-namespace Framework\Core;
+namespace Bluajacket\Framework\Core;
 class Security
 {
 	public $blacklist=array();
@@ -220,7 +220,7 @@ class Security
 	/**
 	 * check request from hostname
 	 * @param  string  $hostname
-	 * @return boolean          
+	 * @return boolean
 	 */
 	public function isRequestFromHost($hostname = null){
 		if(is_null($hostname)) $hostname = $_SERVER['SERVER_NAME'];

@@ -2,7 +2,7 @@
 /**
  * API class.
  */
-namespace Framework\Core;  
+namespace Bluajacket\Framework\Core;  
 class JsonAPI
 {
 
@@ -26,7 +26,7 @@ class JsonAPI
 				$this->{$key} = $val;
 			}
 		}
-		
+
 		$uri = parse_url($_SERVER['REQUEST_URI']);
 		$query = isset($uri['query']) ? $uri['query'] : '';
 		$uri = isset($uri['path']) ? rawurldecode($uri['path']) : '';
@@ -49,7 +49,7 @@ class JsonAPI
 			|| $this->_url[0] == ""){
 			unset($this->_url[0]);
 		}
-		
+
 		$model = explode(".json",$this->_url[1]);
 		$this->model = $model[0];
 		$id = explode(".json",$this->_url[2]);
@@ -67,18 +67,18 @@ class JsonAPI
 		foreach ($_GET as $key => $val){
 			$this->where[$key]=$val;
 		}
-		
+
 		if($params==null){
 			$this->params = $_POST;
 		}else{
 			$this->params = $this->objectToArray($this->options['params']);
 		}
 	}
-	
-	
+
+
 	/**
 	 * objectToArray function.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $object
 	 * @return void
@@ -255,28 +255,28 @@ class JsonAPI
 					if($opt[0] == "group"){
 						$group = array($val[0],$val[1]);
 					}
-					
+
 					if($opt[0] == "select"){
 						$select = array($val[0],$val[1]);
 					}
-					
+
 					if($opt[0] == "search"){
 						$search = true;
 						$query = $val[0];
 					}
 				}
 			}
-			
-			
-			
+
+
+
 			if($search){
 				$out = $get->searchQuery($query,array());
 			}else{
 				if(isset($this->where)){
 					$where = $this->where;
 				}
-		
-				
+
+
 				$out = $get->special(array(
 					"select" => $select,
 					"where" => $where,
@@ -285,7 +285,7 @@ class JsonAPI
 					"groupBy" => $group
 				));
 			}
-			
+
 
 			if(is_array($out)){
 				$result['status'] = true;
@@ -303,7 +303,7 @@ class JsonAPI
 				$result['status'] = false;
 			}
 		}
-	
+
 		return json_encode($result,JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_HEX_AMP);
 	}
 
@@ -323,7 +323,7 @@ class JsonAPI
 		}
 		return json_encode($result);
 	}
-	
+
 	/**
 	 * update function.
 	 *

@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Database;
+namespace Bluajacket\Framework\Database;
 const STATUS_REPLY = '+';
 const ERROR_REPLY = '-';
 const INTEGER_REPLY = ':';
@@ -23,7 +23,7 @@ class Redis
 {
 	/**
 	 * client function.
-	 * 
+	 *
 	 * @access public
 	 * @param string $host (default: '127.0.0.1')
 	 * @param int $port (default: 6379)
@@ -55,11 +55,11 @@ class Redis
 			return $reply;
 		};
 	}
-	
-	
+
+
 	/**
 	 * _multi_bulk_reply function.
-	 * 
+	 *
 	 * @access private
 	 * @param mixed $cmd
 	 * @return void
@@ -72,10 +72,10 @@ class Redis
 		foreach ($tokens as $token) $multi_bulk_reply .= $this->_bulk_reply($token);
 		return $multi_bulk_reply;
 	}
-	
+
 	/**
 	 * _bulk_reply function.
-	 * 
+	 *
 	 * @access private
 	 * @param mixed $arg
 	 * @return void
@@ -84,11 +84,11 @@ class Redis
 	{
 		return '$'.strlen($arg)."\r\n".$arg."\r\n";
 	}
-	
-	
+
+
 	/**
 	 * _reply function.
-	 * 
+	 *
 	 * @access private
 	 * @param mixed $fp
 	 * @return void

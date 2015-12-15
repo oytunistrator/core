@@ -2,7 +2,7 @@
 /**
  * Bower class.
  */
-namespace Framework\Web; 
+namespace Bluejacket\Framework\Web;
 class Bower
 {
 	/**
@@ -13,7 +13,7 @@ class Bower
 	 * @var string
 	 * @access public
 	 */
-	public $componentsFolder='Application/bower_components';
+	public $componentsFolder='bower_components';
 	/**
 	 * folder
 	 *

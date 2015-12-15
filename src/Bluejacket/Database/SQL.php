@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Database;
+namespace Bluajacket\Framework\Database;
 /**
  * New SQL generator with extention PDO.
  */

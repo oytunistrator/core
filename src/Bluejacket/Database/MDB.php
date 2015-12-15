@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Database;
+namespace Bluajacket\Framework\Database;
 /**
  * MDB is MongoDB class
  */

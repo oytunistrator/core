@@ -2,7 +2,7 @@
 /**
  * Form class.
  */
-namespace Framework\Web;
+namespace Bluejacket\Framework\Web;
 class Form
 {
 	public $out;

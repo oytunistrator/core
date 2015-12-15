@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Core;
+namespace Bluajacket\Framework\Core;
 /**
  * XML generator class
  */
@@ -11,9 +11,9 @@ class XML
 
   /**
    * array convert to xml
-   * @param array  $data     
-   * @param mixed  $xml_data 
-   * @return mixed           
+   * @param array  $data
+   * @param mixed  $xml_data
+   * @return mixed
    */
   function array_to_xml( $data, &$xml_data ) {
       foreach( $data as $key => $value ) {

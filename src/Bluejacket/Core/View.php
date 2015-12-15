@@ -2,11 +2,11 @@
 /**
  * View class.
  */
-namespace Framework\Core;
+namespace Bluajacket\Framework\Core;
 class View{
 	/**
 	 * _cfg
-	 * 
+	 *
 	 * @var mixed
 	 * @access private
 	 * @static
@@ -25,7 +25,7 @@ class View{
 
 	/**
 	 * _tpl
-	 * 
+	 *
 	 * @var mixed
 	 * @access private
 	 */
@@ -37,18 +37,18 @@ class View{
 
 	/**
 	 * _vars
-	 * 
+	 *
 	 * (default value: array())
-	 * 
+	 *
 	 * @var array
 	 * @access private
 	 */
 	private $_vars = array();
-	
-	
+
+
 	/**
 	 * __construct function.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $controller (default: null)
 	 * @return void
@@ -68,7 +68,7 @@ class View{
 
 	/**
 	 * _cacheWrite function.
-	 * 
+	 *
 	 * @access private
 	 * @param mixed $cache_filename (default: null)
 	 * @return void
@@ -87,7 +87,7 @@ class View{
 
 	/**
 	 * _compile function.
-	 * 
+	 *
 	 * @access private
 	 * @param mixed $template (default: null)
 	 * @param bool $init_only (default: false)
@@ -109,7 +109,7 @@ class View{
 				}
 
 				$cache_filename = self::$_cfg["dir_cache"] . rawurlencode(md5($template). self::$_cfg["ext_cache"]);
-				
+
 				if(is_file($cache_filename)){
 					$cache_filename = self::$_cfg["dir_cache"] . rawurlencode(md5($template."_".rand(0,9999)). self::$_cfg["ext_cache"]);
 				}
@@ -281,7 +281,7 @@ class View{
 
 	/**
 	 * _error function.
-	 * 
+	 *
 	 * @access private
 	 * @param mixed $error_message (default: null)
 	 * @return void
@@ -294,7 +294,7 @@ class View{
 
 	/**
 	 * _formatCompiledValue function.
-	 * 
+	 *
 	 * @access private
 	 * @param mixed $value (default: null)
 	 * @param mixed $tag (default: null)
@@ -336,7 +336,7 @@ class View{
 
 	/**
 	 * _replaceVars function.
-	 * 
+	 *
 	 * @access private
 	 * @param mixed $html (default: null)
 	 * @return void
@@ -372,8 +372,8 @@ class View{
 
 			if(isset($matches[1][$i], $matches[2][$i])) {
 				$var = $matches[2][$i];
-				
-				
+
+
 				if(self::$_cfg['security']){
 					foreach ($_GET as $get => $content){
 						$_GET[$get]=preg_replace("/&#?[a-z0-9]{2,8};/i","",$content);
@@ -401,7 +401,7 @@ class View{
 					break;
 				case "server":
 					$val = isset($_SERVER[$var]) ? $_SERVER[$var] : null;
-					break;	
+					break;
 				}
 			}
 
@@ -454,7 +454,7 @@ class View{
 
 	/**
 	 * cache function.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $template (default: null)
 	 * @param int $cache_lifetime (default: 0)
@@ -472,7 +472,7 @@ class View{
 
 	/**
 	 * cacheFlush function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -482,7 +482,7 @@ class View{
 
 	/**
 	 * load function.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $template (default: null)
 	 * @return void
@@ -495,7 +495,7 @@ class View{
 
 	/**
 	 * engine function.
-	 * 
+	 *
 	 * @access public
 	 * @static
 	 * @return void
@@ -512,7 +512,7 @@ class View{
 
 	/**
 	 * fetch function.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $template (default: null)
 	 * @return void
@@ -525,7 +525,7 @@ class View{
 
 	/**
 	 * get function.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $var (default: null)
 	 * @return void
@@ -538,7 +538,7 @@ class View{
 
 	/**
 	 * set function.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $var (default: null)
 	 * @param mixed $value (default: null)
@@ -554,7 +554,7 @@ class View{
 
 	/**
 	 * setConfig function.
-	 * 
+	 *
 	 * @access public
 	 * @static
 	 * @param mixed $key (default: null)

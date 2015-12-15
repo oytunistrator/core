@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Core;
+namespace Bluajacket\Framework\Core;
 /**
  * Curl class
  */

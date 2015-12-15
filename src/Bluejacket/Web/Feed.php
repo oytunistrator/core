@@ -2,7 +2,7 @@
 /**
  * Feed class.
  */
-namespace Framework\Web; 
+namespace Bluejacket\Framework\Web; 
 class Feed
 {
 	/**

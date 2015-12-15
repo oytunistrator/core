@@ -2,7 +2,7 @@
 /**
  * Model class.
  */
-namespace Framework\Core;
+namespace Bluajacket\Framework\Core;
 class Model
 {
 	/**

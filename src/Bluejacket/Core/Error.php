@@ -4,7 +4,7 @@
  *
  * @extends Exception
  */
-namespace Framework\Core;
+namespace Bluajacket\Framework\Core;
 class Error
 {
 	/**

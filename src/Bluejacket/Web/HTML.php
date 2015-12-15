@@ -2,7 +2,7 @@
 /**
  * HTML class.
  */
-namespace Framework\Web;
+namespace Bluejacket\Framework\Web;
 class HTML
 {
 

@@ -2,7 +2,7 @@
 /**
  * Table class.
  */
-namespace Framework\Web;
+namespace Bluajacket\Framework\Web;
 class Table
 {
 	/**
@@ -126,29 +126,29 @@ class Table
 										$newurl = str_replace("%id%",$submodel->id,$newurl);
 										$newurl = str_replace("%extract%",$submodel->$opts['extract'],$newurl);
 										$res_submodel_out = $submodel->$opts['output'];
-										
+
 										/* eğer verinin tamamını almak istemezse bir özellik daha ekle verinin tamamını almasın. */
-										
+
 										if($opts['if']){
 											$if_model = $opts['if']['model'];
 											$if_extract = $opts['if']['extract'];
 											$if_value = $opts['if']['value'];
 											$if_output = $opts['if']['output'];
-											
+
 											$if_model_class = new $if_model;
 											$if_model_class->get(array($if_extract => $arr[$i][$if_value]));
-											
+
 											$newurl = str_replace("%model%",$if_model,$opts['url']);
 											$newurl = str_replace("%id%",$if_model_class->id,$newurl);
 											$newurl = str_replace("%extract%",$if_model->$if_extract,$newurl);
-											
+
 
 											switch($opts['if']['option']){
 												case 'empty':
 													if(empty($submodel->$opts['output']) || is_null($submodel->$opts['output']) || $submodel->$opts['output'] == ""){
 														$res_submodel_out = $if_model_class->$if_output;
 													}
-													break;	
+													break;
 												case 'numeric':
 													if(!is_numeric($submodel->$opts['output'])){
 														$res_submodel_out = $if_model_class->$if_output;
@@ -161,7 +161,7 @@ class Table
 													break;
 											}
 										}
-										
+
 										if(is_array($opts['crop'])){
 											$cropStart = $opts['crop'][0];
 											$cropEnd = $opts['crop'][1];
@@ -170,7 +170,7 @@ class Table
 												$res_submodel_out .= $opts['crop_char'];
 											}
 										}
-										
+
 										$this->_out.="<td><a href=".$newurl.">".$res_submodel_out."</a></td>";
 									}else if(isset($opts['custom'])){
 											$this->_out.="<td>".str_replace("%primaryKey%",$arr[$i][$primaryKey],$opts['custom'])."</td>";

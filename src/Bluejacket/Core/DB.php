@@ -2,7 +2,7 @@
 /**
  * DB class.
  */
-namespace Framework\Core;
+namespace Bluajacket\Framework\Core;
 class DB
 {
 	/**
