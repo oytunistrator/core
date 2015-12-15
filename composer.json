@@ -1,7 +1,6 @@
 {
     "name": "bluejacket-labs/core",
     "license": "MIT",
-    "type": "project",
     "description": "Bluejacket Core Application",
     "keywords": ["bluejacket","core","framework","php"],
     "type": "library",
@@ -16,6 +15,11 @@
     },
     "require": {
         "php": ">=5.4",
+        "doctrine/orm": "*",
+        "doctrine/doctrine-bundle": "*",
+        "twig/extensions": "*"
+    },
+    "require-dev": {
         "doctrine/orm": "*",
         "doctrine/doctrine-bundle": "*",
         "twig/extensions": "*"
