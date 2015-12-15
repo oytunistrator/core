@@ -20,9 +20,9 @@
         "twig/extensions": "*"
     },
     "require-dev": {
-        "doctrine/orm": "*",
-        "doctrine/doctrine-bundle": "*",
-        "twig/extensions": "*"
+        "doctrine/orm": "dev-master",
+        "doctrine/doctrine-bundle": "dev-master",
+        "twig/extensions": "dev-master"
     },
     "config": {
         "bin-dir": "bin"
