@@ -1,5 +1,5 @@
 <?php
-namespace Bluajacket\Framework\Core;
+namespace Bluajacket\Core;
 /**
  * Route class
  */

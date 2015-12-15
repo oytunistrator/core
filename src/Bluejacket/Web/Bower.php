@@ -2,7 +2,7 @@
 /**
  * Bower class.
  */
-namespace Bluejacket\Framework\Web;
+namespace Bluejacket\Web;
 class Bower
 {
 	/**

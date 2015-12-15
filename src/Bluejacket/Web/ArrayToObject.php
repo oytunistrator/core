@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Framework\Web;
+namespace Bluejacket\Web;
 /**
  * ArrayToObject class
  */

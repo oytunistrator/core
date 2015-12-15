@@ -1,5 +1,5 @@
 <?php
-namespace Bluajacket\Framework\File;
+namespace Bluajacket\File;
 /**
  * Log Class
  */

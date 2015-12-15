@@ -2,7 +2,7 @@
 /**
  * Security class.
  */
-namespace Bluajacket\Framework\Core;
+namespace Bluajacket\Core;
 class Security
 {
 	public $blacklist=array();

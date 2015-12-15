@@ -2,7 +2,7 @@
 /**
  * Table class.
  */
-namespace Bluajacket\Framework\Web;
+namespace Bluajacket\Web;
 class Table
 {
 	/**

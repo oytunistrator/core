@@ -2,7 +2,7 @@
 /**
  * Controller class.
  */
-namespace Bluajacket\Framework\Core;
+namespace Bluajacket\Core;
 class Controller
 {
 	/**

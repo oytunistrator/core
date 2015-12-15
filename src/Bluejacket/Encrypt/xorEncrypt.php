@@ -2,7 +2,7 @@
 /**
  * xorCrypt class.
  */
-namespace Bluajacket\Framework\Encrypt;
+namespace Bluajacket\Encrypt;
 class xorCrypt
 {
 	private $password = NULL;
