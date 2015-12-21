@@ -17,28 +17,28 @@ class Boot
 	public function __construct($array = array()){
 		if(is_array($array) && count($array) > 0){
 			foreach($array as $k => $v){
-				self::$_config[$k] = $v;
+				$this->_config[$k] = $v;
 			}
 		}
 
 
-		if(isset(self::$_config['app'])){
-			self::$app = JSON::decode(file_get_contents(__DIR__."/".self::$_config['app']));
+		if(isset($this->_config['app'])){
+			$this->$app = JSON::decode(file_get_contents(__DIR__."/".$this->_config['app']));
 		}
 
-		if(isset(self::$_config['database'])){
-			self::$database = JSON::decode(file_get_contents(__DIR__."/".self::$_config['database']));
+		if(isset($this->_config['database'])){
+			$this->$database = JSON::decode(file_get_contents(__DIR__."/".$this->_config['database']));
 		}
 
-		if(isset(self::$_config['security'])){
-			self::$security = JSON::decode(file_get_contents(__DIR__."/".self::$_config['security']));
+		if(isset($this->_config['security'])){
+			$this->$security = JSON::decode(file_get_contents(__DIR__."/".$this->_config['security']));
 		}
 
-		if(isset(self::$_config['types'])){
-			self::$types = JSON::decode(file_get_contents(__DIR__."/".self::$_config['types']));
+		if(isset($this->_config['types'])){
+			$this->types = JSON::decode(file_get_contents(__DIR__."/".$this->_config['types']));
 		}
 
-		return self;
+		return $this;
 
 		/*
 		$this->loader("Config/",array("Route.php"));
@@ -148,7 +148,7 @@ class Boot
 	}
 
 	public function dump(){
-		var_dump(self);
+		var_dump($this);
 	}
 }
 ?>
