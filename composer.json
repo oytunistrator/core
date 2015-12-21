@@ -11,15 +11,13 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Bluejacket\\": "src/Bluejacket/" }
+        "psr-0": { "Bluejacket\\": "src/" }
     },
     "require": {
         "php": ">=5.4",
         "twig/extensions": "*"
     },
     "require-dev": {
-        "doctrine/orm": "dev-master",
-        "doctrine/doctrine-bundle": "dev-master",
         "twig/extensions": "dev-master"
     },
     "config": {
