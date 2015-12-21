@@ -4,6 +4,7 @@
  */
 namespace Bluejacket;
 use Bluejacket\Core\JSON;
+use Bluejacket\Core\Route;
 class Boot
 {
 
@@ -23,19 +24,25 @@ class Boot
 
 
 		if(isset($this->_config['app'])){
-			$this->app = JSON::decode(file_get_contents(__DIR__."/../".$this->_config['app']));
+			$this->app = JSON::decode(file_get_contents($this->_config['app']));
 		}
 
 		if(isset($this->_config['database'])){
-			$this->database = JSON::decode(file_get_contents(__DIR__."/../".$this->_config['database']));
+			$this->database = JSON::decode(file_get_contents($this->_config['database']));
 		}
 
 		if(isset($this->_config['security'])){
-			$this->security = JSON::decode(file_get_contents(__DIR__."/../".$this->_config['security']));
+			$this->security = JSON::decode(file_get_contents($this->_config['security']));
 		}
 
 		if(isset($this->_config['types'])){
-			$this->types = JSON::decode(file_get_contents(__DIR__."/../".$this->_config['types']));
+			$this->types = JSON::decode(file_get_contents($this->_config['types']));
+		}
+
+		$this->url = Route::_url();
+
+		if(isset($this->security->status)){
+
 		}
 
 		/*
