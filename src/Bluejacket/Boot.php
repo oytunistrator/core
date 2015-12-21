@@ -3,7 +3,7 @@
  * Boot class.
  */
 namespace Bluejacket;
-use Bluejacket\Core;
+use Bluejacket\Core\JSON;
 class Boot
 {
 
