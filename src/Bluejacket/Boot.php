@@ -147,7 +147,7 @@ class Boot
 		return $protocol."://".$hostname.$port;
 	}
 
-	public dump(){
+	public function dump(){
 		var_dump(self);
 	}
 }
