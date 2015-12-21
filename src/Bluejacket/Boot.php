@@ -2,7 +2,7 @@
 /**
  * Boot class.
  */
-namespace Bluejacket\Framework;
+namespace Bluejacket;
 class Boot
 {
 	/**
