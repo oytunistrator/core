@@ -38,8 +38,6 @@ class Boot
 			$this->types = JSON::decode(file_get_contents(__DIR__."/".$this->_config['types']));
 		}
 
-		return $this;
-
 		/*
 		$this->loader("Config/",array("Route.php"));
 		global $config;
