@@ -5,6 +5,7 @@
 namespace Bluejacket;
 use Bluejacket\Core\JSON;
 use Bluejacket\Core\Route;
+use Bluejacket\Core\Error;
 class Boot
 {
 
@@ -40,83 +41,29 @@ class Boot
 		}
 
 		$this->url = Route::_url();
+		$this->error = new Error;
+
+		if(isset($this->database)){
+			if(isset($this->database->driver)) define('DB_DRIVER',$this->database->driver);
+			if(isset($this->database->server)) define('DB_SERVER',$this->database->server);
+			if(isset($this->database->username)) define('DB_USERNAME',$this->database->username);
+			if(isset($this->database->password)) define('DB_PASSWORD',$this->database->password);
+			if(isset($this->database->port)) define('DB_PORT',$this->database->port);
+			if(isset($this->database->charset)) define('DB_CHARSET',$this->database->charser);
+		}
 
 		if(isset($this->security->status)){
-
-		}
-
-		/*
-		$this->loader("Config/",array("Route.php"));
-		global $config;
-		$this->_loadUrl();
-		try{
-				define('APPFOLDER',$config['application']);
-				define('PUBLIC_DIR',$config['public']);
-
-				$this->error = new Core\Error();
-
-				if(isset($config['status'])){
-					switch($config['status']){
-						case "development":
-							if(is_array($config['development'])){
-								define('DEBUG',isset($config['development']['debug']) ? $config['development']['debug'] : true);
-								define('CACHE_EXTENTION',isset($config['development']['cache']) ? $config['development']['cache'] : false);
-								define('SSL_ACTIVE',isset($config['development']['ssl']) ? $config['development']['ssl'] : false);
-								define('SECURITY_EXTENSION',isset($config['development']['security']) ? $config['development']['security'] : false);
-							}
-							break;
-						case "public":
-							if(is_array($config['public'])){
-								define('DEBUG',isset($config['public']['debug']) ? $config['public']['debug'] : true);
-								define('CACHE_EXTENTION',isset($config['public']['cache']) ? $config['public']['cache'] : false);
-								define('SSL_ACTIVE',isset($config['public']['ssl']) ? $config['public']['ssl'] : false);
-								define('SECURITY_EXTENSION',isset($config['public']['security']) ? $config['public']['security'] : false);
-							}
-							break;
-						case "test":
-							if(is_array($config['test'])){
-								define('DEBUG',isset($config['test']['debug']) ? $config['test']['debug'] : true);
-								define('CACHE_EXTENTION',isset($config['test']['cache']) ? $config['test']['cache'] : false);
-								define('SSL_ACTIVE',isset($config['test']['ssl']) ? $config['test']['ssl'] : false);
-								define('SECURITY_EXTENSION',isset($config['test']['security']) ? $config['test']['security'] : false);
-							}
-							break;
-					}
-					if(CACHE_EXTENTION){
-						define('CACHE_FOLDER',isset($config['cache_folder']) ? $config['cache_folder'] : $config['application']."/cache/");
-					}
-				}
-
-
-				if(isset($config['db']['driver'])) define('DB_DRIVER',$config['db']['driver']);
-				if(isset($config['db']['server'])) define('DB_SERVER',$config['db']['server']);
-				if(isset($config['db']['username'])) define('DB_USERNAME',$config['db']['username']);
-				if(isset($config['db']['password'])) define('DB_PASSWORD',$config['db']['password']);
-				if(isset($config['db']['database'])) define('DB_DATABASE',$config['db']['database']);
-				if(isset($config['db']['port'])) define('DB_PORT',$config['db']['port']);
-				if(isset($config['db']['charset'])) define('DB_CHARSET',$config['db']['charset']);
-
-				if(isset($config['controller']['default'])) define('DEFAULT_CONTROLLER',$config['controller']['default']);
-
-				if(isset($config['template_folder'])) define('TEMPLATE_FOLDER',$config['template_folder']);
-				else define('TEMPLATE_FOLDER',$config['application']."/template/");
-
-				if(isset($config['controller_folder'])){
-					define('CONTROLLER_FOLDER',$config['controller_folder']);
-					$this->loader($config['controller_folder']);
-				}else {
-					define('CONTROLLER_FOLDER',$config['application']."/controller/");
-					$this->loader(getcwd()."/".$config['application']."/controller/");
-				}
-
-				$this->loader(getcwd()."/".$config['application']."/model/");
-
-				$config['fileNotFoundFile'] = $config['public']."/404.html";
-		}catch(\Exception $e){
-			if(DEBUG){
-				$this->error->show("Error: ".$e->getMessage());
+			define('DEBUG',$this->types->{$this->security->status}->debug);
+			define('CACHE',$this->types->{$this->security->status}->cache);
+			define('SSL',$this->types->{$this->security->status}->ssl);
+			if(isset($this->database->{$this->security->status})){
+				define('DB_DATABASE',$this->database->{$this->security->status});
+			}
+			if(CACHE){
+				define('CACHE_FOLDER',isset($this->app->cache) ? $this->app->cache : $this->app->application."/cache/");
 			}
 		}
+
 		if(DEBUG == false){
 			error_reporting(0);
 			@header('X-Powered-By: Bluejacket.io');
@@ -131,8 +78,7 @@ class Boot
 			$log->write("[".date("d-m-Y H:i")."] ".$_SERVER['REMOTE_ADDR']." - ".$_SERVER['REQUEST_METHOD'].":".$_SERVER['REQUEST_URI']."\n");
 		}
 
-		include("Config/Route.php");
-		*/
+		include($this->app->route);	
 	}
 
 	/**
