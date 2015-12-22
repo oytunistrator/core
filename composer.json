@@ -18,7 +18,7 @@
         "twig/extensions": "*",
         "kylekatarnls/jade-php": "*",
         "smarty/smarty": "*",
-        "mustache/mustache": "*",
+        "mustache/mustache": "*"
     },
     "require-dev": {
         "twig/extensions": "dev-master",
