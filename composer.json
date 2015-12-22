@@ -26,11 +26,7 @@
         "doctrine/dbal": "*",
         "doctrine/mongodb": "*",
         "doctrine/migrations": "*",
-        "doctrine/couchdb": "*",
-        "doctrine/search": "*",
-        "doctrine/key-value-store": "*",
-        "vmelnik/doctrine-encrypt-bundle": "*",
-        "doctrine/couchdb-odm": "*"
+        "doctrine/search": "*"
     },
     "config": {
         "bin-dir": "bin"
