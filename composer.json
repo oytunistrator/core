@@ -18,15 +18,15 @@
         "twig/extensions": "*",
         "kylekatarnls/jade-php": "*",
         "smarty/smarty": "*",
-        "mustache/mustache": "*"
-    },
-    "require-dev": {
-        "twig/extensions": "dev-master",
+        "mustache/mustache": "*",
         "doctrine/orm": "*",
         "doctrine/dbal": "*",
         "doctrine/mongodb": "*",
         "doctrine/migrations": "*",
         "doctrine/search": "*"
+    },
+    "require-dev": {
+        "twig/extensions": "dev-master"
     },
     "config": {
         "bin-dir": "bin"
