@@ -15,7 +15,9 @@
     },
     "require": {
         "php": ">=5.4",
-        "twig/extensions": "*"
+        "twig/extensions": "*",
+        "kylekatarnls/jade-php": "*",
+        "smarty/smarty": "*"
     },
     "require-dev": {
         "twig/extensions": "dev-master"
