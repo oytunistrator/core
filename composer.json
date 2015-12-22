@@ -19,6 +19,15 @@
         "kylekatarnls/jade-php": "*",
         "smarty/smarty": "*",
         "mustache/mustache": "*",
+        "doctrine/orm": *,
+        "doctrine/dbal": *,
+        "doctrine/mongodb": "*",
+        "doctrine/migrations": "*",
+        "doctrine/couchdb": "*",
+        "doctrine/search": "*",
+        "doctrine/key-value-store": "*",
+        "vmelnik/doctrine-encrypt-bundle": "*",
+        "doctrine/couchdb-odm": "*"
     },
     "require-dev": {
         "twig/extensions": "dev-master"
