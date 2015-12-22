@@ -20,13 +20,7 @@
         "smarty/smarty": "*",
         "mustache/mustache": "*",
         "doctrine/orm": "*",
-        "doctrine/dbal": "*",
-        "doctrine/mongodb": "*",
-        "doctrine/migrations": "*",
-        "doctrine/search": "*"
-    },
-    "require-dev": {
-        "twig/extensions": "dev-master"
+        "doctrine/dbal": "*"
     },
     "config": {
         "bin-dir": "bin"
