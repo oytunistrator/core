@@ -20,7 +20,8 @@
         "smarty/smarty": "*",
         "mustache/mustache": "*",
         "doctrine/orm": "*",
-        "doctrine/dbal": "*"
+        "doctrine/dbal": "*",
+        "phpunit/phpunit": "*"
     },
     "config": {
         "bin-dir": "bin"
