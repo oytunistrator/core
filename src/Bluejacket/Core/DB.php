@@ -2,7 +2,7 @@
 /**
  * DB class.
  */
-namespace Bluajacket\Core;
+namespace Bluejacket\Core;
 class DB
 {
 	/**

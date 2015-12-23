@@ -2,7 +2,7 @@
 /**
  * API class.
  */
-namespace Bluajacket\Core;  
+namespace Bluejacket\Core;
 class JsonAPI
 {
 

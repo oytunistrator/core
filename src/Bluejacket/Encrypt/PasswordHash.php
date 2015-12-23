@@ -2,7 +2,7 @@
 /**
  * PasswordHash class.
  */
-namespace Bluajacket\Encrypt;
+namespace Bluejacket\Encrypt;
 class PasswordHash {
     var $itoa64;
     var $iteration_count_log2;

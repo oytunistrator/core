@@ -37,7 +37,7 @@
  * The `lessc_formatter` takes a CSS tree, and dumps it to a formatted string,
  * handling things like indentation.
  */
-namespace Bluajacket\Web;
+namespace Bluejacket\Web;
 class Lessc {
 	static public $VERSION = "v0.5.0";
 

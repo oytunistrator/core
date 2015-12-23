@@ -2,7 +2,7 @@
 /**
  * Upload class.
  */
-namespace Bluajacket\File;
+namespace Bluejacket\File;
 class Upload
 {
 	/**

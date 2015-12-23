@@ -2,7 +2,7 @@
 /**
  * Cache class.
  */
-namespace Bluajacket\Core; 
+namespace Bluejacket\Core;
 class Cache
 {
 	/**

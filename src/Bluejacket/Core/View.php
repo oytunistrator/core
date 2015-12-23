@@ -2,7 +2,7 @@
 /**
  * View class.
  */
-namespace Bluajacket\Core;
+namespace Bluejacket\Core;
 class View{
 	/**
 	 * _cfg

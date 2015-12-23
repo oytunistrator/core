@@ -1,5 +1,5 @@
 <?php
-namespace Bluajacket\Core;
+namespace Bluejacket\Core;
 /**
  * XML generator class
  */

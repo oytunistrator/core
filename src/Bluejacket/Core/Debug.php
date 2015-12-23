@@ -2,7 +2,7 @@
 /**
  * Debug class.
  */
-namespace Bluajacket\Core;
+namespace Bluejacket\Core;
 class Debug
 {
 	/**
