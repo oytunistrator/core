@@ -15,10 +15,13 @@
     },
     "require": {
         "php": ">=5.4",
-        "twig/extensions": "*"
-    },
-    "require-dev": {
-        "twig/extensions": "dev-master"
+        "twig/extensions": "*",
+        "kylekatarnls/jade-php": "*",
+        "smarty/smarty": "*",
+        "mustache/mustache": "*",
+        "doctrine/orm": "*",
+        "doctrine/dbal": "*",
+        "phpunit/phpunit": "*"
     },
     "config": {
         "bin-dir": "bin"
