@@ -2,7 +2,7 @@
 /**
  * Profile class.
  */
-namespace Bluejacket\Core;
+namespace Bluejacket\Deprecated;
 class Profile
 {
 

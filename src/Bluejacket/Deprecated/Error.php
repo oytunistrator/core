@@ -4,7 +4,7 @@
  *
  * @extends Exception
  */
-namespace Bluejacket\Core;
+namespace Bluejacket\Deprecated;
 class Error
 {
 	/**
@@ -19,25 +19,6 @@ class Error
 	 */
 	function __construct($message=null){
 		$this->message = $message;
-	}
-
-	/**
-	 * checkClass function.
-	 *
-	 * @access public
-	 * @param mixed $class
-	 * @return void
-	 */
-	public function checkClass($class){
-		if (!class_exists($class)) {
-			if(APP_DEBUGING){
-				print $this->show("Class not exist: ".$class);
-			}else{
-				die();
-			}
-			return false;
-		}
-		return true;
 	}
 
 

@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Database;
+namespace Bluejacket\Connectors;
 /**
  * New SQL generator with extention PDO.
  */
@@ -16,45 +16,80 @@ class SQL
      */
     static function connect($config){
 	    try {
-			if($config['driver'] == "mysql"){
-				$array = array(
-			    \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES ".$config['charset']
-			  );
-			}else{
-				$array = array();
-			}
-			@$pdo = new \PDO($config['driver'].':host='.$config['server'].';port='.$config['port'].';dbname='.$config['database'].';charset='.$config['charset'], $config['username'], $config['password'],$array);
-		} catch (\PDOException $e) {
-			if(DEBUG){
-				$this->error->show("Connection failed: ".$e->getMessage(),1);
-			}
-		}
-		if($pdo){
-			return $pdo;
-		}
-		return false;
+  			if($config['driver'] == "mysql"){
+  				$array = array(
+  			    \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES ".$config['charset']
+  			  );
+  			}else{
+  				$array = array();
+  			}
+        $conf=null;
+        foreach($config as $k => $v){
+          switch($k){
+            case "driver":
+              $conf.=$v;
+              break;
+            case "server":
+              $conf.=':host='.$v;
+              break;
+            case "port":
+              $conf.=';port='.$v;
+              break;
+            case "database":
+              $conf.=';dbname='.$v;
+              break;
+            case "charset":
+              $conf.=';charset='.$v;
+              break;
+            case "username":
+              $username = isset($v) ? $v : false;
+              break;
+            case "password":
+              $password = isset($v) ? $v : false;
+              break;
+          }
+        }
+  			@$pdo = new \PDO($conf, $username, $password, $array);
+        @$pdo->beginTransaction();
+    		} catch (\PDOException $e) {
+    			if(DEBUG){
+    				$this->error->show("Connection failed: ".$e->getMessage(),1);
+    		}
+  		}
+  		if($pdo){
+  			return $pdo;
+  		}
+  		return false;
+    }
+
+    public static function _connectCheck($config = array()){
+      if(!isset($config) || (is_array($config) && count($config) == 0)){
+        $config = array(
+          "driver" => DB_DRIVER,
+          "server" => DB_SERVER,
+          "database" => DB_DATABASE,
+          "username" => DB_USERNAME,
+          "password" => DB_PASSWORD,
+          "port" => DB_PORT,
+          "charset" => DB_CHARSET
+        );
+      }
+
+      return self::connect($config);
     }
 
     /**
      * execute command only
      * @return mixed
      */
-    function run(){
-	    $config = array(
-  			"driver" => DB_DRIVER,
-  			"server" => DB_SERVER,
-  			"database" => DB_DATABASE,
-  			"username" => DB_USERNAME,
-  			"password" => DB_PASSWORD,
-  			"port" => DB_PORT,
-  			"charset" => DB_CHARSET
-  		);
-
-          $db = self::connect($config);
+    function run($config = array()){
+      $db = self::_connectCheck($config);
 
   		try{
   			if(isset($this->query)){
-  				if(!$db->exec($this->query)){
+          @$result = $db->run($this->query);
+          @$result->commit();
+  				if($result->errorCode() != 0){
   					throw new \Exception("Query not run! <br> Query: ".$this->query);
   				}
   			}else{
@@ -73,24 +108,38 @@ class SQL
      * query and return results
      * @return mixed
      */
-    public function query(){
-	    $config = array(
-			"driver" => DB_DRIVER,
-			"server" => DB_SERVER,
-			"database" => DB_DATABASE,
-			"username" => DB_USERNAME,
-			"password" => DB_PASSWORD,
-			"port" => DB_PORT,
-			"charset" => DB_CHARSET
-		);
+    function query($config = array()){
+      $db = self::_connectCheck($config);
 
-        $db = self::connect($config);
+  		try{
+  			if(isset($this->query)){
+  				@$result = $db->query($this->query);
+          @$result->commit();
+  				if($result->errorCode() != 0){
+  					return $result;
+  				}else{
+  					throw new \Exception("Output not array!");
+  				}
+  			}else{
+  				throw new \Exception("Query is null!");
+  			}
+  		}catch(\Exception $e){
+  			if(DEBUG){
+  				$this->error->show("Failed: ".$e->getMessage()." <br> Query: ".$this->query);
+  			}
+  		}
+	}
 
-		try{
+  function fetchAll($data = array(), $config = array()){
+    $db = self::_connectCheck($config);
+
+    try{
 			if(isset($this->query)){
-				@$out = $db->query($this->query);
-				if($out){
-					return $out;
+        @$beforeRun = $db->prepare($this->query);
+        @$result = $beforeRun->execute($data);
+        @$result->commit();
+				if($result->errorCode() == 0){
+					return $result->fetchAll();
 				}else{
 					throw new \Exception("Output not array!");
 				}
@@ -102,7 +151,35 @@ class SQL
 				$this->error->show("Failed: ".$e->getMessage()." <br> Query: ".$this->query);
 			}
 		}
-	}
+  }
+
+  function fetch($data = array(), $config = array()){
+    $db = self::_connectCheck($config);
+
+    try{
+			if(isset($this->query)){
+        @$beforeRun = $db->prepare($this->query);
+        @$result = $beforeRun->execute($data);
+        @$result->commit();
+				if($result->errorCode() == 0){
+					return $result->fetch();
+				}else{
+					throw new \Exception("Output not array!");
+				}
+			}else{
+				throw new \Exception("Query is null!");
+			}
+		}catch(\Exception $e){
+			if(DEBUG){
+				$this->error->show("Failed: ".$e->getMessage()." <br> Query: ".$this->query);
+			}
+		}
+  }
+
+  function rollBack(){
+    $db = self::_connectCheck($config);
+    return $db->rollBack();
+  }
 
   /**
    * select sql generator
@@ -315,5 +392,35 @@ class SQL
   function limit($start,$end){
       $this->query .= " LIMIT ".$start.",".$end;
       return new self($this->query);
+  }
+
+  /**
+   * create sql generator
+   * @return mixed
+   */
+  function create($type = null, $name = null){
+      if(!is_null($type) && !is_null($name)){
+        $this->query .= "CREATE {$type} {$name}";
+      }
+      return new self($this->query);
+  }
+
+  /**
+   * drop sql generator
+   * @return mixed
+   */
+  function drop($type = null, $name = null){
+      if(!is_null($type) && !is_null($name)){
+        $this->query .= "DROP {$type} {$name}";
+      }
+      return new self($this->query);
+  }
+
+  /**
+   * dump sql generator
+   * @return mixed
+   */
+  public function dump(){
+    return $this->query;
   }
 }

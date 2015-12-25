@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Core;
+namespace Bluejacket\Formatter;
 /**
  * XML generator class
  */

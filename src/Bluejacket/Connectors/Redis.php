@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Database;
+namespace Bluejacket\Connectors;
 const STATUS_REPLY = '+';
 const ERROR_REPLY = '-';
 const INTEGER_REPLY = ':';

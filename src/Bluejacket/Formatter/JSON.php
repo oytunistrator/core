@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Core;
+namespace Bluejacket\Formatter;
 class JSON
 {
   public static function encode($data, $options = null){

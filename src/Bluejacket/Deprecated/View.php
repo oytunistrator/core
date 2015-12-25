@@ -2,7 +2,7 @@
 /**
  * View class.
  */
-namespace Bluejacket\Core;
+namespace Bluejacket\Deprecated;
 class View{
 	/**
 	 * _cfg

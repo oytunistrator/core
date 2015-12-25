@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Database;
+namespace Bluejacket\Connectors;
 /**
  * MDB is MongoDB class
  */

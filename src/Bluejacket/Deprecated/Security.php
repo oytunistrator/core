@@ -2,7 +2,7 @@
 /**
  * Security class.
  */
-namespace Bluejacket\Core;
+namespace Bluejacket\Deprecated;
 class Security
 {
 	public $blacklist=array();

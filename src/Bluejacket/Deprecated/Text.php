@@ -2,7 +2,7 @@
 /**
  * Text class.
  */
-namespace Bluejacket\Core;
+namespace Bluejacket\Deprecaed;
 class Text
 {
 	/**

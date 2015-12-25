@@ -3,7 +3,7 @@
  * API class.
  */
 namespace Bluejacket\Core;
-class JsonAPI
+class API
 {
 
 	/**

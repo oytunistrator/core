@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Core;
+namespace Bluejacket\Web;
 /**
  * Time conversion class
  */

@@ -22,19 +22,19 @@ class Boot
 		}
 
 		if(isset($this->_config['app'])){
-			$this->app = Core\JSON::decode(file_get_contents($this->_config['app']));
+			$this->app = Formatter\JSON::decode(file_get_contents($this->_config['app']));
 		}
 
 		if(isset($this->_config['database'])){
-			$this->database = Core\JSON::decode(file_get_contents($this->_config['database']));
+			$this->database = Formatter\JSON::decode(file_get_contents($this->_config['database']));
 		}
 
 		if(isset($this->_config['security'])){
-			$this->security = Core\JSON::decode(file_get_contents($this->_config['security']));
+			$this->security = Formatter\JSON::decode(file_get_contents($this->_config['security']));
 		}
 
 		if(isset($this->_config['types'])){
-			$this->types = Core\JSON::decode(file_get_contents($this->_config['types']));
+			$this->types = Formatter\JSON::decode(file_get_contents($this->_config['types']));
 		}
 
 
@@ -76,23 +76,6 @@ class Boot
 		}
 
 		include($this->app->route);
-	}
-
-	/**
-	 * serverUrl function.
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function serverUrl(){
-		$protocol = isset($_SERVER['HTTPS']) && (strcasecmp('off', $_SERVER['HTTPS']) !== 0);
-		if($protocol) $protocol = "https";
-		else $protocol = "http";
-		$hostname = $_SERVER['SERVER_NAME'];
-		$port = $_SERVER['SERVER_PORT'];
-		if($port == "80") $port = "";
-		else $port = ":".$port;
-		return $protocol."://".$hostname.$port;
 	}
 
 	public function dump(){
