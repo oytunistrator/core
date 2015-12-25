@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Database;
+namespace Bluejacket\Core;
 /**
  * New CRUD Class
  */
