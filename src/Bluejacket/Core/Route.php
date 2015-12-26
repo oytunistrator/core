@@ -42,35 +42,35 @@ class Route
    */
   public static function _uri(){
     $uri = parse_url($_SERVER['REQUEST_URI']);
-		$query = isset($uri['query']) ? $uri['query'] : '';
-		$uri = isset($uri['path']) ? rawurldecode($uri['path']) : '';
+    $query = isset($uri['query']) ? $uri['query'] : '';
+    $uri = isset($uri['path']) ? rawurldecode($uri['path']) : '';
 
 
-		if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0)
-		{
-			$uri = (string) substr($uri, strlen($_SERVER['SCRIPT_NAME']));
-		}
-		elseif (strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0)
-		{
-			$uri = (string) substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
-		}
+    if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0)
+    {
+            $uri = (string) substr($uri, strlen($_SERVER['SCRIPT_NAME']));
+    }
+    elseif (strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0)
+    {
+            $uri = (string) substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
+    }
 
 
 
-		$_url = explode('/',$uri);
+    $_url = explode('/',$uri);
 
-		if(!isset($_url[0]) && $_url[0] == "index" || $_url[0] == "index.php" || $_url[0] == ""){
-			unset($_url[0]);
-		}
+    if(!isset($_url[0]) && $_url[0] == "index" || $_url[0] == "index.php" || $_url[0] == ""){
+            unset($_url[0]);
+    }
 
-		if(is_array($_url)){
-      self::$_path = null;
-      self::$_url = array();
-			foreach($_url as $k => $u){
-				if($u != "") self::$_url[]=htmlspecialchars(stripcslashes(stripslashes($u)));
-        if($u != "") self::$_path.="/".htmlspecialchars(stripcslashes(stripslashes($u)));
-			}
-		}
+    if(is_array($_url)){
+        self::$_path = null;
+        self::$_url = array();
+        foreach($_url as $k => $u){
+            if($u != ""){ self::$_url[]=htmlspecialchars(stripcslashes(stripslashes($u))); }
+            if($u != ""){ self::$_path.="/".htmlspecialchars(stripcslashes(stripslashes($u))); } 
+        }
+    }
   }
 
   /**
@@ -150,14 +150,16 @@ class Route
    * @return mixed
    */
   public static function _getController($controller,$action){
-		if(is_file(CONTROLLER_FOLDER.$controller.'.php')){
-			//require_once $this->_controllerPath.$controller.'.php';
-			self::$_controller = new $controller();
-			if($this->__checkClassFunction(self::_controller,$action)){
-				self::$_controller->$action();
-			}
-		}
-	}
+        if(is_file(CONTROLLER_FOLDER.$controller.'.php')){
+                //require_once $this->_controllerPath.$controller.'.php';
+                $app = Boot::APP;
+                $controller = "{$app}\\{$controller}";
+                self::$_controller = new $controller();
+                if($this->__checkClassFunction(self::_controller,$action)){
+                        self::$_controller->$action();
+                }
+        }
+    }
 
   /**
    * check function on class
@@ -186,7 +188,9 @@ class Route
     $_controller = isset($controller) ? ucfirst($controller)."Controller" : null;
     $_action = isset($action) ? $action : null;
     if(self::__checkClassFunction($_controller,$_action)){
-      $_controller = new $_controller();
+        $app = Boot::APP;
+        $controller = "{$app}\\{$_controller}";
+        $_controller = new $controller();
       //$_action = $_controller->$_action();
       call_user_func_array(array($_controller,$_action),$arguments);
     }else{
