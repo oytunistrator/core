@@ -3,6 +3,7 @@ namespace Bluejacket\Core;
 /**
  * New CRUD Class
  */
+use Bluejacket\Connectors\SQL;
 class CRUD
 {
     function __construct($objects = array()){
@@ -13,7 +14,6 @@ class CRUD
 
     public function setup(){
       if(DB_DRIVER == preg_match('/(sql)/i')){
-        use Bluejacket\Connectors\SQL;
         $this->db = new SQL();
       }
     }

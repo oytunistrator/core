@@ -4,3 +4,4 @@ logs/
 bin/*
 .DS_Store
 composer.lock
+/nbproject/private/
