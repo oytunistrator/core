@@ -11,7 +11,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Bluejacket\\": "src/" }
+        "psr-0": { "Bluejacket\\": "src/" }
     },
     "require": {
         "php": ">=5.4",
