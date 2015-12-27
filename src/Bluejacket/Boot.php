@@ -15,7 +15,7 @@ class Boot
         "types" => "config/types.json",
       );
     
-    const APP = "Application";
+    const APP = "App";
     const MODEL = "Model";
 
     /**

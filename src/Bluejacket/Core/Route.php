@@ -173,7 +173,7 @@ class Route
    * @param  string $function
    * @return boolean
    */
-    public static function __checkClassFunction($class,$function){
+  public static function __checkClassFunction($class,$function){
         $c = get_class_methods($class);
         foreach ($c as $val) {
             if($val == $function){
@@ -194,8 +194,9 @@ class Route
     $app = Boot::APP;
     $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller)."Controller" : null;
     $_action = isset($action) ? $action : null;
-    $_controller = new $_controller();
     if(self::__checkClassFunction($_controller,$_action)){
+        $_controller = new $controller();
+      //$_action = $_controller->$_action();
       call_user_func_array(array($_controller,$_action),$arguments);
     }else{
       if(DEBUG){
@@ -218,9 +219,10 @@ class Route
       $app = Boot::APP;
       $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller)."Controller" : null;
       $_action = $action;
-      $_controller = new $_controller();
       if(self::__checkClassFunction($_controller,$_action)){
-       call_user_func_array(array($_controller,$_action),$arguments);
+        $_controller = new $_controller();
+        //$_action = $_controller->$_action();
+        call_user_func_array(array($_controller,$_action),$arguments);
       }else{
         if(DEBUG){
           Core::showErrorMsg("Not Found: ".$_controller."/".$_action."();",1);
@@ -230,8 +232,8 @@ class Route
       $app = Boot::APP;
       $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller)."Controller" : null;
       $_action = isset(self::$_url[1]) ? self::$_url[1] : "index";
-      $_controller = new $_controller();
       if(self::__checkClassFunction($_controller,$_action)){
+        $_controller = new $_controller();
         call_user_func_array(array($_controller,$_action),$arguments);
       }else{
         if(DEBUG){
@@ -268,6 +270,7 @@ class Route
    * @return mixed
    */
   public static function post($path = null, $controller = array()){
+    global $_ROUTE;
     self::_uri();
     $path = self::_convertPath($path);
     $path_c = explode("/",$path);
@@ -297,6 +300,7 @@ class Route
    * @return mixed
    */
   public static function put($path = null, $controller = array()){
+    global $_ROUTE;
     self::_uri();
     $path = self::_convertPath($path);
     $path_c = explode("/",$path);
@@ -326,6 +330,7 @@ class Route
    * @return mixed
    */
   public static function get($path = null, $controller = array()){
+    global $_ROUTE;
     self::_uri();
     $path = self::_convertPath($path);
     $path_c = explode("/",$path);
@@ -355,6 +360,7 @@ class Route
    * @return mixed
    */
   public static function delete($path = null, $controller = array()){
+    global $_ROUTE;  
     self::_uri();
     $path = self::_convertPath($path);
     $path_c = explode("/",$path);
@@ -405,6 +411,7 @@ class Route
    * @return mixed
    */
   public static function custom($path = null, $controller = array(), $accept = array()){
+    global $_ROUTE;
     self::_uri();
     $path_c = explode("/",$path);
     $path = self::_convertPath($path);
@@ -412,7 +419,6 @@ class Route
       if(is_array($accept) && count($accept) > 0){
         if(!in_array($_SERVER['REQUEST_METHOD'], $accept)) die();
       }
-      global $_ROUTE;
       if(isset($controller['arguments']) && !is_null($controller['arguments'])){
         $controller['arguments'] = $controller['arguments'];
       }else if(isset($_ROUTE['keys']) && is_array($_ROUTE['keys'])){
