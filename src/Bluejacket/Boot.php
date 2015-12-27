@@ -59,7 +59,7 @@ class Boot
             define('DB_USERNAME',$this->database->username);
             define('DB_PASSWORD',$this->database->password);
             define('DB_PORT',$this->database->port);
-            define('DB_CHARSET',$this->database->charser);
+            define('DB_CHARSET',$this->database->charset);
         }
         
         if(isset($this->security->status)){
