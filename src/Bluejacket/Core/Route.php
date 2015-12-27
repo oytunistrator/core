@@ -192,11 +192,11 @@ class Route
    */
   public static function _rootControllerCallback($controller,$action,$arguments=array()){
     $app = Boot::APP;
-    $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
+    $controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
     $_action = isset($action) ? $action : null;
     $_controller = new $controller();
     if(self::__checkClassFunction($_controller,$_action)){
-      call_user_func_array(array($_controller,$_action),$arguments);
+      call_user_func_array(array($controller,$_action),$arguments);
     }else{
       if(DEBUG){
         Core::showErrorMsg("Not Found: ".$_controller."/".$_action."();",1);
@@ -216,11 +216,11 @@ class Route
   public static function _controllerCallback($controller,$action,$arguments=array()){
     if(isset($action)){
       $app = Boot::APP;
-      $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
+      $controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
       $_action = $action;
       $_controller = new $_controller();
       if(self::__checkClassFunction($_controller,$_action)){
-        call_user_func_array(array($_controller,$_action),$arguments);
+        call_user_func_array(array($controller,$_action),$arguments);
       }else{
         if(DEBUG){
           Core::showErrorMsg("Not Found: ".$_controller."/".$_action."();",1);
@@ -228,11 +228,11 @@ class Route
       }
     }else if(!isset($action)){
       $app = Boot::APP;
-      $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
+      $controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
       $_action = isset(self::$_url[1]) ? self::$_url[1] : "index";
       $_controller = new $_controller();
       if(self::__checkClassFunction($_controller,$_action)){
-        call_user_func_array(array($_controller,$_action),$arguments);
+        call_user_func_array(array($controller,$_action),$arguments);
       }else{
         if(DEBUG){
           Core::showErrorMsg("Not Found: ".$_controller."/".$_action."();",1);
