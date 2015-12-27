@@ -48,11 +48,11 @@ class Route
 
     if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0)
     {
-            $uri = (string) substr($uri, strlen($_SERVER['SCRIPT_NAME']));
+        $uri = (string) substr($uri, strlen($_SERVER['SCRIPT_NAME']));
     }
     elseif (strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0)
     {
-            $uri = (string) substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
+        $uri = (string) substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
     }
 
 
@@ -195,8 +195,7 @@ class Route
       call_user_func_array(array($_controller,$_action),$arguments);
     }else{
       if(DEBUG){
-        $error = new Error();
-        $error->show("Not Found: ".$_controller."/".$_action."();",1);
+        Core::showErrorMsg("Not Found: ".$_controller."/".$_action."();",1);
       }
     }
     exit;
@@ -220,8 +219,7 @@ class Route
         call_user_func_array(array($_controller,$_action),$arguments);
       }else{
         if(DEBUG){
-          $error = new Error();
-          $error->show("Not Found: ".$_controller."/".$_action."();",1);
+          Core::showErrorMsg("Not Found: ".$_controller."/".$_action."();",1);
         }
       }
     }else if(!isset($action)){
@@ -232,41 +230,13 @@ class Route
         call_user_func_array(array($_controller,$_action),$arguments);
       }else{
         if(DEBUG){
-          $error = new Error();
-          $error->show("Not Found: ".$_controller."/".$_action."();",1);
+          Core::showErrorMsg("Not Found: ".$_controller."/".$_action."();",1);
         }
       }
     }
     exit;
   }
 
-  /**
-   * read server params and set this class
-   * @return mixed
-   */
-  public function readServerParams(){
-		foreach($_POST as $k => $v){
-			$this->post[$k] = $v;
-		}
-		foreach($_GET as $k => $v){
-			$this->get[$k] = $v;
-		}
-		foreach($_SERVER as $k => $v){
-			$this->server[strtolower($k)] = $v;
-		}
-		if(!@isset($_SESSION['PHPSESSID'])){
-			@session_start();
-		}
-		foreach($_SESSION as $k => $v){
-			$this->session[$k] = $v;
-		}
-		foreach($_COOKIE as $k => $v){
-			$this->cookie[$k] = $v;
-		}
-		foreach(apache_request_headers() as $k => $v){
-			$this->header[strtolower($k)] = $v;
-		}
-	}
 
   /**
    * root path redirecter
