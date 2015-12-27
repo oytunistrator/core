@@ -262,7 +262,7 @@ class Route
    */
   public static function root($method = null, $controller = array()){
     self::_uri();
-    if(is_array($controller)){
+    if(is_string($controller)){
        $controller = self::__controllerToArray($controller);
     }
     if(count(self::$_url) == 0){
@@ -284,7 +284,7 @@ class Route
   public static function post($path = null, $controller = array()){
     global $_ROUTE;
     self::_uri();
-    if(is_array($controller)){
+    if(is_string($controller)){
        $controller = self::__controllerToArray($controller);
     }
     $path = self::_convertPath($path);
@@ -317,7 +317,7 @@ class Route
   public static function put($path = null, $controller = array()){
     global $_ROUTE;
     self::_uri();
-    if(is_array($controller)){
+    if(is_string($controller)){
        $controller = self::__controllerToArray($controller);
     }
     $path = self::_convertPath($path);
@@ -350,7 +350,7 @@ class Route
   public static function get($path = null, $controller = array()){
     global $_ROUTE;
     self::_uri();
-    if(is_array($controller)){
+    if(is_string($controller)){
        $controller = self::__controllerToArray($controller);
     }    
     $path = self::_convertPath($path);
@@ -383,7 +383,7 @@ class Route
   public static function delete($path = null, $controller = array()){
     global $_ROUTE;  
     self::_uri();
-    if(is_array($controller)){
+    if(is_string($controller)){
        $controller = self::__controllerToArray($controller);
     }
     $path = self::_convertPath($path);
@@ -437,7 +437,7 @@ class Route
   public static function custom($path = null, $controller = array(), $accept = array()){
     global $_ROUTE;
     self::_uri();
-    if(is_array($controller)){
+    if(is_string($controller)){
        $controller = self::__controllerToArray($controller);
     } 
     $path_c = explode("/",$path);
