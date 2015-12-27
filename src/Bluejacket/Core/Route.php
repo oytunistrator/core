@@ -3,6 +3,7 @@ namespace Bluejacket\Core;
 /**
  * Route class
  */
+use Bluejacket\Boot;
 class Route
 {
   /**
