@@ -51,6 +51,10 @@ class Boot
 
 
         $this->url = Core\Route::_uri();
+        
+        if(isset($this->app)){
+            define('APP', $this->app->application);
+        }
 
 
         if(isset($this->database)){
@@ -83,12 +87,12 @@ class Boot
                 if(!ini_get('date.timezone')){
                     date_default_timezone_set('GMT');
                 }
-
-                $log = new File\Log(array("file" => "Log/Access", "errors" => "Log/Error"));
+                   
+                $log = new File\Log(array("file" => "log/Access", "errors" => "Log/Error"));
                 $log->write("[".date("d-m-Y H:i")."] ".$_SERVER['REMOTE_ADDR']." - ".$_SERVER['REQUEST_METHOD'].":".$_SERVER['REQUEST_URI']."\n");
             }
             if(CACHE){
-                define('CACHE_FOLDER',isset($this->app->cache) ? $this->app->cache : $this->app->application."/cache/");
+                define('CACHE_FOLDER',isset($this->app->cache) ? $this->app->cache : $this->app->application."/Cache/");
             }
         }
 

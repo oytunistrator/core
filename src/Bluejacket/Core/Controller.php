@@ -3,6 +3,9 @@
  * Controller class.
  */
 namespace Bluejacket\Core;
+use Bluejacket\Boot;
+use Twig_Loader_Filesystem;
+use Twig_Environment;
 class Controller extends Core
 {
 	/**
@@ -33,9 +36,6 @@ class Controller extends Core
 	 * @access public
 	 */
 	public $url;
-        
-        const VIEW_HOME = 'View';
-
 	/**
 	 * __construct function.
 	 *
@@ -44,19 +44,6 @@ class Controller extends Core
 	 */
 	public function __construct(){
             $this->loadUri();
-            
-            $this->view = Boot::APP."/".VIEV_HOME."/".$this->getClassName();
-            
-            
-            var_dump($this->view);
-            
-            /*
-            $loader = new Twig_Loader_Filesystem('/path/to/templates');
-            $this->twig = new Twig_Environment($loader, array(
-                'cache' => '/path/to/compilation_cache',
-            ));
-             *
-             */
 	}
 
 
@@ -124,7 +111,18 @@ class Controller extends Core
         }
     }
     public function getClassName() {
-        return get_called_class();
-    }    
+        $class = get_called_class();
+        $explode = explode("\\",$class);
+        
+        return $explode[self::_getLastKey($explode)];
+    }
+
+
+   static function _getLastKey($data){
+        if(!is_array($data)){
+            return false;
+        }
+        return key(array_slice($data, -1,1, TRUE));
+   }    
 }
 ?>
