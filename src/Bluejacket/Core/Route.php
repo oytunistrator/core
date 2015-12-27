@@ -173,7 +173,7 @@ class Route
    * @param  string $function
    * @return boolean
    */
-  public static function __checkClassFunction($class,$function){
+    public static function __checkClassFunction($class,$function){
         $c = get_class_methods($class);
         foreach ($c as $val) {
             if($val == $function){
@@ -194,9 +194,8 @@ class Route
     $app = Boot::APP;
     $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller)."Controller" : null;
     $_action = isset($action) ? $action : null;
+    $_controller = new $_controller();
     if(self::__checkClassFunction($_controller,$_action)){
-        $_controller = new $controller();
-      //$_action = $_controller->$_action();
       call_user_func_array(array($_controller,$_action),$arguments);
     }else{
       if(DEBUG){
@@ -219,10 +218,9 @@ class Route
       $app = Boot::APP;
       $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller)."Controller" : null;
       $_action = $action;
+      $_controller = new $_controller();
       if(self::__checkClassFunction($_controller,$_action)){
-        $_controller = new $_controller();
-        //$_action = $_controller->$_action();
-        call_user_func_array(array($_controller,$_action),$arguments);
+       call_user_func_array(array($_controller,$_action),$arguments);
       }else{
         if(DEBUG){
           Core::showErrorMsg("Not Found: ".$_controller."/".$_action."();",1);
@@ -232,8 +230,8 @@ class Route
       $app = Boot::APP;
       $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller)."Controller" : null;
       $_action = isset(self::$_url[1]) ? self::$_url[1] : "index";
+      $_controller = new $_controller();
       if(self::__checkClassFunction($_controller,$_action)){
-        $_controller = new $_controller();
         call_user_func_array(array($_controller,$_action),$arguments);
       }else{
         if(DEBUG){
