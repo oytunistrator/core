@@ -194,9 +194,8 @@ class Route
     $app = Boot::APP;
     $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
     $_action = isset($action) ? $action : null;
+    $_controller = new $controller();
     if(self::__checkClassFunction($_controller,$_action)){
-        $_controller = new $controller();
-      //$_action = $_controller->$_action();
       call_user_func_array(array($_controller,$_action),$arguments);
     }else{
       if(DEBUG){
@@ -219,9 +218,8 @@ class Route
       $app = Boot::APP;
       $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
       $_action = $action;
+      $_controller = new $_controller();
       if(self::__checkClassFunction($_controller,$_action)){
-        $_controller = new $_controller();
-        //$_action = $_controller->$_action();
         call_user_func_array(array($_controller,$_action),$arguments);
       }else{
         if(DEBUG){
@@ -232,8 +230,8 @@ class Route
       $app = Boot::APP;
       $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
       $_action = isset(self::$_url[1]) ? self::$_url[1] : "index";
+      $_controller = new $_controller();
       if(self::__checkClassFunction($_controller,$_action)){
-        $_controller = new $_controller();
         call_user_func_array(array($_controller,$_action),$arguments);
       }else{
         if(DEBUG){
