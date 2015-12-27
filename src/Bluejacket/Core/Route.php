@@ -177,7 +177,7 @@ class Route
         $c = get_class_methods($class);
         foreach ($c as $val) {
             if($val == $function){
-                    return true;
+                return true;
             }
         }
         return false;
