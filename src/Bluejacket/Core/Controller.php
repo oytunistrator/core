@@ -33,6 +33,8 @@ class Controller extends Core
 	 * @access public
 	 */
 	public $url;
+        
+        const VIEW_HOME = 'View';
 
 	/**
 	 * __construct function.
@@ -41,7 +43,20 @@ class Controller extends Core
 	 * @return void
 	 */
 	public function __construct(){
-		$this->loadUri();
+            $this->loadUri();
+            
+            $this->view = Boot::APP."/".VIEV_HOME."/".$this->getClassName();
+            
+            
+            print_r($this->view);
+            
+            /*
+            $loader = new Twig_Loader_Filesystem('/path/to/templates');
+            $this->twig = new Twig_Environment($loader, array(
+                'cache' => '/path/to/compilation_cache',
+            ));
+             *
+             */
 	}
 
 
@@ -95,18 +110,21 @@ class Controller extends Core
 		return $this->_url;
 	}
 
-	/**
-	 * call user function from method and arguments
-	 * @param  array $method    method strings
-	 * @param  array $arguments function array to arguments
-	 * @return mixed            return user function
-	 */
-	public function __call($method,$arguments) {
-      if(method_exists($this, $method)) {
-					$this->totalArguments = func_num_args();
-					$this->arguments = func_get_args();
-          return call_user_func_array(array($this,$method),$arguments);
-      }
-  }
+    /**
+     * call user function from method and arguments
+     * @param  array $method    method strings
+     * @param  array $arguments function array to arguments
+     * @return mixed            return user function
+     */
+    public function __call($method,$arguments) {
+        if(method_exists($this, $method)) {
+            $this->totalArguments = func_num_args();
+            $this->arguments = func_get_args();
+            return call_user_func_array(array($this,$method),$arguments);
+        }
+    }
+    public function getClassName() {
+        return get_called_class();
+    }    
 }
 ?>
