@@ -151,13 +151,13 @@ class Route
    */
   public static function _getController($controller,$action){
         if(is_file(CONTROLLER_FOLDER.$controller.'.php')){
-                //require_once $this->_controllerPath.$controller.'.php';
-                $app = Boot::APP;
-                $controller = "{$app}\\{$controller}";
-                self::$_controller = new $controller();
-                if($this->__checkClassFunction(self::_controller,$action)){
-                        self::$_controller->$action();
-                }
+            //require_once $this->_controllerPath.$controller.'.php';
+            $app = Boot::APP;
+            $controller = "{$app}\\{$controller}";
+            self::$_controller = new $controller();
+            if($this->__checkClassFunction(self::_controller,$action)){
+                    self::$_controller->$action();
+            }
         }
     }
 
@@ -168,14 +168,14 @@ class Route
    * @return boolean
    */
   public static function __checkClassFunction($class,$function){
-		$c = get_class_methods($class);
-		foreach ($c as $val) {
-			if($val == $function){
-				return true;
-			}
-		}
-		return false;
-	}
+        $c = get_class_methods($class);
+        foreach ($c as $val) {
+            if($val == $function){
+                    return true;
+            }
+        }
+        return false;
+    }
 
   /**
    * root controller callback function
@@ -185,11 +185,10 @@ class Route
    * @return mixed
    */
   public static function _rootControllerCallback($controller,$action,$arguments=array()){
-    $_controller = isset($controller) ? ucfirst($controller)."Controller" : null;
+    $app = Boot::APP;
+    $_controller = isset($controller) ? "{$app}\\".ucfirst($controller)."Controller" : null;
     $_action = isset($action) ? $action : null;
     if(self::__checkClassFunction($_controller,$_action)){
-        $app = Boot::APP;
-        $controller = "{$app}\\{$_controller}";
         $_controller = new $controller();
       //$_action = $_controller->$_action();
       call_user_func_array(array($_controller,$_action),$arguments);
@@ -211,7 +210,8 @@ class Route
    */
   public static function _controllerCallback($controller,$action,$arguments=array()){
     if(isset($action)){
-      $_controller = isset($controller) ? ucfirst($controller)."Controller" : null;
+      $app = Boot::APP;
+        $_controller = isset($controller) ? "{$app}\\".ucfirst($controller)."Controller" : null;
       $_action = $action;
       if(self::__checkClassFunction($_controller,$_action)){
         $_controller = new $_controller();
@@ -223,7 +223,8 @@ class Route
         }
       }
     }else if(!isset($action)){
-      $_controller = isset($controller) ? ucfirst($controller)."Controller" : null;
+      $app = Boot::APP;
+      $_controller = isset($controller) ? "{$app}\\".ucfirst($controller)."Controller" : null;
       $_action = isset(self::$_url[1]) ? self::$_url[1] : "index";
       if(self::__checkClassFunction($_controller,$_action)){
         $_controller = new $_controller();
