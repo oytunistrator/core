@@ -48,7 +48,7 @@ class Controller extends Core
             $this->view = Boot::APP."/".VIEV_HOME."/".$this->getClassName();
             
             
-            print_r($this->view);
+            var_dump($this->view);
             
             /*
             $loader = new Twig_Loader_Filesystem('/path/to/templates');
