@@ -82,6 +82,11 @@ class Route
   public static function _convertPath($path){
     global $_ROUTE;
     $_ROUTE = array();
+    $_ROUTE['controller'] = null;
+    $_ROUTE['model'] = null;
+    $_ROUTE['format'] = null;
+    $_ROUTE['id'] = null;
+    $_ROUTE['keys'] = array();
     $rex = "/(:[a-z]+)|(\.\(:[a-z]+\))|(\{[a-z]+\})/mi";
     preg_match_all($rex,$path,$match);
     $path_c = explode("/",$path);
