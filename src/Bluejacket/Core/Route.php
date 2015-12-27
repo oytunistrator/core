@@ -192,7 +192,7 @@ class Route
    */
   public static function _rootControllerCallback($controller,$action,$arguments=array()){
     $app = Boot::APP;
-    $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller)."Controller" : null;
+    $_controller = isset($controller) ? "{$app}\\Controller\\".ucfirst($controller) : null;
     $_action = isset($action) ? $action : null;
     if(self::__checkClassFunction($_controller,$_action)){
         $_controller = new $controller();
@@ -243,6 +243,15 @@ class Route
     }
     exit;
   }
+  
+  
+  public static function __controllerToArray($controller){
+      $controller = explode("@",$controller);
+      return array(
+          "controller" => $controller[0],
+          "action" => $controller[1]
+      );
+  }
 
 
   /**
@@ -253,6 +262,9 @@ class Route
    */
   public static function root($method = null, $controller = array()){
     self::_uri();
+    if(is_array($controller)){
+       $controller = self::__controllerToArray($controller);
+    }
     if(count(self::$_url) == 0){
       if($_SERVER['REQUEST_METHOD'] != $method) die();
       if(is_callable($controller)){
@@ -272,6 +284,9 @@ class Route
   public static function post($path = null, $controller = array()){
     global $_ROUTE;
     self::_uri();
+    if(is_array($controller)){
+       $controller = self::__controllerToArray($controller);
+    }
     $path = self::_convertPath($path);
     $path_c = explode("/",$path);
     if(count(self::$_url) > 0 && $path_c[1] == self::$_url[0]){
@@ -302,6 +317,9 @@ class Route
   public static function put($path = null, $controller = array()){
     global $_ROUTE;
     self::_uri();
+    if(is_array($controller)){
+       $controller = self::__controllerToArray($controller);
+    }
     $path = self::_convertPath($path);
     $path_c = explode("/",$path);
     if(count(self::$_url) > 0 && $path_c[1] == self::$_url[0]){
@@ -332,6 +350,9 @@ class Route
   public static function get($path = null, $controller = array()){
     global $_ROUTE;
     self::_uri();
+    if(is_array($controller)){
+       $controller = self::__controllerToArray($controller);
+    }    
     $path = self::_convertPath($path);
     $path_c = explode("/",$path);
     if(count(self::$_url) > 0 && $path_c[1] == self::$_url[0]){
@@ -362,6 +383,9 @@ class Route
   public static function delete($path = null, $controller = array()){
     global $_ROUTE;  
     self::_uri();
+    if(is_array($controller)){
+       $controller = self::__controllerToArray($controller);
+    }
     $path = self::_convertPath($path);
     $path_c = explode("/",$path);
     if($path_c[1] == self::$_url[0]){
@@ -413,6 +437,9 @@ class Route
   public static function custom($path = null, $controller = array(), $accept = array()){
     global $_ROUTE;
     self::_uri();
+    if(is_array($controller)){
+       $controller = self::__controllerToArray($controller);
+    } 
     $path_c = explode("/",$path);
     $path = self::_convertPath($path);
     if(count(self::$_url) > 0 && $path_c[1] == self::$_url[0]){
