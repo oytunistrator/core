@@ -573,6 +573,26 @@ class SQL
    }
    
    /**
+    * _in function.
+    * @return mixed
+    */
+   function _in($data = array()){
+        $this->_query .= " IN (";
+        if(is_array($data)){
+            $last_key=self::_getLastKey($data);
+            foreach($data as $key => $val){
+                $this->_query .= " CHANGE ".$key;
+                $this->_query .= $key." ".$val;
+                if($key != $last_key){
+                    $this->_query .= ",";
+                }
+            }
+        }
+        $this->_query .= ")";
+        return new self($this->query);
+   }
+   
+   /**
     * lastInsertedId function.
     * @return mixed
     */
