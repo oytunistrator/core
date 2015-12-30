@@ -99,51 +99,11 @@ class Route
     $new_path = $path;
     foreach ($match[0] as $k => $v) {
       $key = array_search($v,$path_c);
-
-      switch($v){
-        case ":controller":
-          if(isset(self::$_url[$key-$escape_t])){
-            $controller = ucfirst(self::$_url[$key-$escape_t])."Controller";
-            $_ROUTE['controller'] = $controller;
-            $new_path = preg_replace($rex,$model,$new_path);
-          }
-          break;
-        case ":model":
-          if(isset(self::$_url[$key-$escape_t])){
-            $model = ucfirst(self::$_url[$key-$escape_t]);
-            $_ROUTE['model'] = self::$_url[$key-$escape_t];
-            $new_path = preg_replace($rex,$model,$new_path);
-          }
-          break;
-        case ":id":
-          if(isset(self::$_url[$key-$escape_t])){
-            $id = self::$_url[$key-$escape_t];
-            $_ROUTE['id'] = $id;
-            $new_path = preg_replace($rex,$id,$new_path);
-          }
-          break;
-        case ":format":
-          $last_key = key( array_slice( self::$_url, -1, 1, TRUE ) );
-          $last_element = self::$_url[$last_key];
-          $last_geta = explode(".",$last_element);
-          $_ROUTE['format'] = $last_geta[1];
-          $new_path = preg_replace($rex,".".$last_geta[1],$new_path);
-
-          if(isset(self::$_url[$key-$escape_t])){
-            $format = self::$_url[$key-$escape_t];
-            $_ROUTE['format'] = $format;
-            $new_path = preg_replace($rex,$format,$new_path);
-          }
-          break;
-        default:
-          $newVal = str_replace("{","",$v);
-          $newVal = str_replace("}","",$newVal);
-          $_ROUTE["keys"][$newVal] = self::$_url[$key-$escape_t];
-          $place = $_ROUTE["keys"][$newVal];
-          $new_path = preg_replace($rex,$place,$new_path);
-          break;
-      }
-
+      $newVal = str_replace("{","",$v);
+      $newVal = str_replace("}","",$newVal);
+      $_ROUTE["keys"][$newVal] = self::$_url[$key-$escape_t];
+      $place = $_ROUTE["keys"][$newVal];
+      $new_path = preg_replace($rex,$place,$new_path);
     }
     $_ROUTE['path'] = $new_path;
     return $new_path;
