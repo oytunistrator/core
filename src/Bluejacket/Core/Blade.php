@@ -1,6 +1,6 @@
 <?php
 
-namespace Bluejacket;
+namespace Bluejacket\Core;
 
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\View;
