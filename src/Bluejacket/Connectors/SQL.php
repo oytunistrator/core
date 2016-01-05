@@ -3,6 +3,7 @@ namespace Bluejacket\Connectors;
 /**
  * New SQL generator with extention PDO.
  */
+use  Bluejacket\Core\Core;
 class SQL
 {
     function __construct($query = null){
@@ -87,7 +88,6 @@ class SQL
         try{
             if(isset($this->query)){
                 $result = $db->run($this->query);
-                $result->commit();
                 if($result->errorCode() != 0){
                     throw new \Exception("Query not run! <br> Query: ".$this->query);
                 }
@@ -113,8 +113,7 @@ class SQL
         try{
             if(isset($this->query)){
                 $result = $db->query($this->query);
-                $result->commit();
-                if($result->errorCode() != 0){
+                if($result->errorCode() == 0){
                         return $result;
                 }else{
                         throw new \Exception("Output not array!");
@@ -127,6 +126,7 @@ class SQL
                 Core::showErrorMsg("Failed: ".$e->getMessage()." <br> Query: ".$this->query);
             }
         }
+        return false;
     }
 
   function fetchAll($data = array(), $config = array()){
@@ -187,7 +187,7 @@ class SQL
    */
   function select($arr = "*"){
       $query = "SELECT ";
-      if(is_array($arr)){
+      if(is_array($arr) && count($arr) > 0){
           $last_key=self::_getLastKey($arr);
           foreach($arr as $key => $val){
               $query .= $val;
@@ -196,7 +196,7 @@ class SQL
            }
           }
       }else{
-          $query .= $arr;
+          $query .= "*";
       }
 
 

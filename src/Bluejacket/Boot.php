@@ -70,9 +70,7 @@ class Boot
             define('DEBUG',$this->types->{$this->security->status}->debug);
             define('CACHE',$this->types->{$this->security->status}->cache);
             define('SSL',$this->types->{$this->security->status}->ssl);
-            if(isset($this->database->{$this->security->status})){
-                define('DB_DATABASE',$this->database->{$this->security->status});
-            }
+            define('DB_DATABASE',$this->database->database->{$this->security->status});
             
             if(DEBUG == false){
                 error_reporting(0);

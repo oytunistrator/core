@@ -14,9 +14,7 @@ class CRUD
     }
 
     public function setup(){
-      if(DB_DRIVER == preg_match('/(sql)/i')){
-        $this->db = new SQL();
-      }
+      $this->db = new SQL();
       
       if(!isset($this->db) && DEBUG == true){
           Core::showErrorMsg("Database Error!", 1);
