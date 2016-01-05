@@ -178,7 +178,7 @@ class Route
       $app = Boot::APP;
       $controller = isset($controller) ? "{$app}\\Controller\\{$controller}" : null;
       $_action = $action;
-      $_controller = new $_controller();
+      $_controller = new $controller();
       if(self::__checkClassFunction($_controller,$_action)){
         call_user_func_array(array($controller,$_action),$arguments);
       }else{
