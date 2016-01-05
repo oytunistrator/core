@@ -19,7 +19,15 @@ class Log
     foreach ($properties as $k => $v) {
       $this->{$k} = $v;
     }
+    
+    if(!is_dir("log")){
+        mkdir("log",0777);
+    }else{
+        chmod("log", 0777);
+    }
+    
     if(isset($this->errors)){
+      ini_set("log_errors", 1);
       ini_set('error_log',$this->errors.'.log');
     }
   }

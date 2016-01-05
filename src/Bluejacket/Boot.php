@@ -85,7 +85,7 @@ class Boot
                     date_default_timezone_set('GMT');
                 }
                    
-                $log = new File\Log(array("file" => "log/Access", "errors" => "Log/Error"));
+                $log = new File\Log(array("file" => "log/Access", "errors" => "log/Error"));
                 $log->write("[".date("d-m-Y H:i")."] ".$_SERVER['REMOTE_ADDR']." - ".$_SERVER['REQUEST_METHOD'].":".$_SERVER['REQUEST_URI']."\n");
             }
             if(CACHE){
