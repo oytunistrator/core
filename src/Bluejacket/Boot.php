@@ -56,7 +56,6 @@ class Boot
             define('APP', $this->app->application);
         }
 
-
         if(isset($this->database)){
             define('DB_DRIVER',$this->database->driver);
             define('DB_SERVER',$this->database->server);
