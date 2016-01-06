@@ -13,10 +13,7 @@
         "twig/extensions": "*",
         "kylekatarnls/jade-php": "*",
         "doctrine/orm": "*",
-        "doctrine/dbal": "*",
-        "illuminate/contracts": ">=5.1,<5.3",
-        "illuminate/view": ">=5.1,<5.3",
-        "illuminate/events": ">=5.1,<5.3"
+        "doctrine/dbal": "*"
     },
      "require-dev": {
         "mockery/mockery": "*",
