@@ -186,7 +186,7 @@ class SQL
    * @return mixed
    */
   function select($arr = "*"){
-      $query = "SELECT ";
+      $query .= "SELECT ";
       if(is_array($arr) && count($arr) > 0){
           $last_key=self::_getLastKey($arr);
           foreach($arr as $key => $val){
@@ -356,7 +356,7 @@ class SQL
      * @return mixed
      */
     function insert($table){
-      $this->query = "INSERT INTO ".$table;
+      $this->query .= "INSERT INTO ".$table;
       return new self($this->query);
     }
 
@@ -598,6 +598,25 @@ class SQL
     */
    function lastInsertedId(){
         return $this->pdo->lastInsertId();
+   }
+   
+   /**
+    * union function
+    * @return mixed
+   */
+   function union($arr = array()){
+   	if(is_array($arr) && count($arr) > 0){
+   		$last_key=self::_getLastKey($arr);
+   		foreach($arr as $key => $query){
+   			$this->query .= " (".$query.") ";
+   			if($key != $last_key){
+	                    $this->_query .= " UNION ";
+	                }
+   		}
+   	}else{
+   		$this->_query .= " UNION ";
+   	}
+   	return return new self($this->query);
    }
 }
 ?>
