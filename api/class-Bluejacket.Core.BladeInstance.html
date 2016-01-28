@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Bluejacket\Core\BladeInstance</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Bluejacket.html">
+						Bluejacket<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Bluejacket.Connectors.html">
+						Connectors					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-Bluejacket.Core.html">
+						Core					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Bluejacket.Deprecaed.html">
+						Deprecaed					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Bluejacket.Deprecated.html">
+						Deprecated					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Bluejacket.Encrypt.html">
+						Encrypt					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Bluejacket.File.html">
+						File					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Bluejacket.Formatter.html">
+						Formatter					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Bluejacket.Web.html">
+						Web					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Bluejacket.Core.API.html">API</a></li>
+				<li><a href="class-Bluejacket.Core.Blade.html">Blade</a></li>
+				<li class="active"><a href="class-Bluejacket.Core.BladeInstance.html">BladeInstance</a></li>
+				<li><a href="class-Bluejacket.Core.Cache.html">Cache</a></li>
+				<li><a href="class-Bluejacket.Core.Controller.html">Controller</a></li>
+				<li><a href="class-Bluejacket.Core.Core.html">Core</a></li>
+				<li><a href="class-Bluejacket.Core.CRUD.html">CRUD</a></li>
+				<li><a href="class-Bluejacket.Core.Model.html">Model</a></li>
+				<li><a href="class-Bluejacket.Core.Registers.html">Registers</a></li>
+				<li><a href="class-Bluejacket.Core.Route.html">Route</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Bluejacket.Core.html" title="Summary of Bluejacket\Core"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class BladeInstance</h1>
+
+
+	<div class="description">
+	<p>Standalone class for generating text using blade templates.</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Bluejacket\Core\BladeInstance</span></b>			
+			 implements 
+<span>Illuminate\Contracts\View\Factory</span>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Bluejacket.html">Bluejacket</a>\<a href="namespace-Bluejacket.Core.html">Core</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Bluejacket.Core.BladeInstance.html#15-232" title="Go to source code">Bluejacket/Core/BladeInstance.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#41-51" title="Go to source code">__construct</a>( <span>string <var>$path</var></span>, <span>string <var>$cache</var></span> )</code>
+
+		<div class="description short">
+			<p>Create a new instance of the blade view factory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Create a new instance of the blade view factory.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>The default path for views</dd>
+					<dt><var>$cache</var></dt>
+					<dd>The default path for cached php</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getViewFinder" id="_getViewFinder">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Illuminate\View\FileViewFinder
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getViewFinder">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#53-65" title="Go to source code">getViewFinder</a>( )</code>
+
+		<div class="description short">
+			<p>Get the laravel view finder.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the laravel view finder.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Illuminate\View\FileViewFinder
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getViewFactory" id="_getViewFactory">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Illuminate\View\Factory
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getViewFactory">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#68-95" title="Go to source code">getViewFactory</a>( )</code>
+
+		<div class="description short">
+			<p>Get the laravel view factory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the laravel view factory.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Illuminate\View\Factory
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addPath" id="_addPath">
+
+		<td class="attributes"><code>
+			 public 
+
+			static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addPath">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#98-110" title="Go to source code">addPath</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Add a path to look for views in.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a path to look for views in.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>The path to look in</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					static
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="exists" id="_exists">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_exists">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#113-123" title="Go to source code">exists</a>( <span>string <var>$view</var></span> )</code>
+
+		<div class="description short">
+			<p>Check if a view exists.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check if a view exists.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$view</var></dt>
+					<dd>The name of the view to check</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="share" id="_share">
+
+		<td class="attributes"><code>
+			 public 
+
+			static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_share">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#126-139" title="Go to source code">share</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Share data across all views.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Share data across all views.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>The name of the variable to share</dd>
+					<dt><var>$value</var></dt>
+					<dd>The value to assign to the variable</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					static
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="composer" id="_composer">
+
+		<td class="attributes"><code>
+			 public 
+
+			static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_composer">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#142-155" title="Go to source code">composer</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span>, <span> <var>$priority</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Register a composer.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Register a composer.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>The name of the composer to register</dd>
+					<dt><var>$value</var></dt>
+					<dd>The closure or class to use</dd>
+					<dt><var>$priority</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					static
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="creator" id="_creator">
+
+		<td class="attributes"><code>
+			 public 
+
+			static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_creator">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#158-171" title="Go to source code">creator</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			<p>Register a creator.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Register a creator.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>The name of the creator to register</dd>
+					<dt><var>$value</var></dt>
+					<dd>The closure or class to use</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					static
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addNamespace" id="_addNamespace">
+
+		<td class="attributes"><code>
+			 public 
+
+			static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addNamespace">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#175-188" title="Go to source code">addNamespace</a>( <span>string <var>$namespace</var></span>, <span>array|string <var>$hints</var></span> )</code>
+
+		<div class="description short">
+			<p>Add a new namespace to the loader.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a new namespace to the loader.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$namespace</var></dt>
+					<dd>The namespace to use</dd>
+					<dt><var>$hints</var></dt>
+					<dd>The hints to apply</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					static
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="file" id="_file">
+
+		<td class="attributes"><code>
+			 public 
+
+			Illuminate\View\View
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_file">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#191-203" title="Go to source code">file</a>( <span>string <var>$path</var></span>, <span>array <var>$data</var> = []</span>, <span>array <var>$mergeData</var> = []</span> )</code>
+
+		<div class="description short">
+			<p>Get the evaluated view contents for the given path.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the evaluated view contents for the given path.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>The path of the file to use</dd>
+					<dt><var>$data</var></dt>
+					<dd>The parameters to pass to the view</dd>
+					<dt><var>$mergeData</var></dt>
+					<dd>The extra data to merge</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					Illuminate\View\View<br>The generated view
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="make" id="_make">
+
+		<td class="attributes"><code>
+			 public 
+
+			Illuminate\View\View
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_make">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#206-217" title="Go to source code">make</a>( <span>string <var>$view</var></span>, <span>array <var>$params</var> = []</span>, <span> <var>$mergeData</var> = []</span> )</code>
+
+		<div class="description short">
+			<p>Generate a view.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Generate a view.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$view</var></dt>
+					<dd>The name of the view to make</dd>
+					<dt><var>$params</var></dt>
+					<dd>The parameters to pass to the view</dd>
+					<dt><var>$mergeData</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					Illuminate\View\View<br>The generated view
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="render" id="_render">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_render">#</a>
+		<code><a href="source-class-Bluejacket.Core.BladeInstance.html#220-231" title="Go to source code">render</a>( <span>string <var>$view</var></span>, <span>array <var>$params</var> = []</span> )</code>
+
+		<div class="description short">
+			<p>Get the content by generating a view.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the content by generating a view.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$view</var></dt>
+					<dd>The name of the view to make</dd>
+					<dt><var>$params</var></dt>
+					<dd>The parameters to pass to the view</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>The generated content
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="path" id="$path">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Bluejacket.Core.BladeInstance.html#20-23" title="Go to source code"><var>$path</var></a>
+
+			<div class="description short">
+				<p>$path The default path for views.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$path The default path for views.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$path" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="cache" id="$cache">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Bluejacket.Core.BladeInstance.html#25-28" title="Go to source code"><var>$cache</var></a>
+
+			<div class="description short">
+				<p>$cache The default path for cached php.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$cache The default path for cached php.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$cache" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="factory" id="$factory">
+		<td class="attributes"><code>
+			protected  
+			Illuminate\View\Factory
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Bluejacket.Core.BladeInstance.html#30-33" title="Go to source code"><var>$factory</var></a>
+
+			<div class="description short">
+				<p>$factory The internal cache of the Factory to only instantiate it once.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$factory The internal cache of the Factory to only instantiate it once.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$factory" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="finder" id="$finder">
+		<td class="attributes"><code>
+			protected  
+			Illuminate\View\FileViewFinder
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Bluejacket.Core.BladeInstance.html#35-38" title="Go to source code"><var>$finder</var></a>
+
+			<div class="description short">
+				<p>$finder The internal cache of the FileViewFinder to only instantiate it once.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$finder The internal cache of the FileViewFinder to only instantiate it once.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$finder" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
