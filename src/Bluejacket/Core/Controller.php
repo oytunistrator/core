@@ -3,9 +3,6 @@
  * Controller class.
  */
 namespace Bluejacket\Core;
-use Bluejacket\Boot;
-use Twig_Loader_Filesystem;
-use Twig_Environment;
 class Controller extends Core
 {
 	/**

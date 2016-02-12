@@ -36,16 +36,6 @@
 
 						</li>
 				<li>
-					<a href="namespace-Bluejacket.Deprecaed.html">
-						Deprecaed					</a>
-
-						</li>
-				<li>
-					<a href="namespace-Bluejacket.Deprecated.html">
-						Deprecated					</a>
-
-						</li>
-				<li>
 					<a href="namespace-Bluejacket.Encrypt.html">
 						Encrypt					</a>
 
@@ -81,8 +71,6 @@
 				<li><a href="class-Bluejacket.Connectors.Redis.html">Bluejacket\Connectors\Redis</a></li>
 				<li><a href="class-Bluejacket.Connectors.SQL.html">Bluejacket\Connectors\SQL</a></li>
 				<li><a href="class-Bluejacket.Core.API.html">Bluejacket\Core\API</a></li>
-				<li><a href="class-Bluejacket.Core.Blade.html">Bluejacket\Core\Blade</a></li>
-				<li><a href="class-Bluejacket.Core.BladeInstance.html">Bluejacket\Core\BladeInstance</a></li>
 				<li><a href="class-Bluejacket.Core.Cache.html">Bluejacket\Core\Cache</a></li>
 				<li><a href="class-Bluejacket.Core.Controller.html">Bluejacket\Core\Controller</a></li>
 				<li><a href="class-Bluejacket.Core.Core.html">Bluejacket\Core\Core</a></li>
@@ -90,13 +78,6 @@
 				<li><a href="class-Bluejacket.Core.Model.html">Bluejacket\Core\Model</a></li>
 				<li><a href="class-Bluejacket.Core.Registers.html">Bluejacket\Core\Registers</a></li>
 				<li><a href="class-Bluejacket.Core.Route.html">Bluejacket\Core\Route</a></li>
-				<li><a href="class-Bluejacket.Deprecaed.Text.html">Bluejacket\Deprecaed\Text</a></li>
-				<li><a href="class-Bluejacket.Deprecated.DB.html">Bluejacket\Deprecated\DB</a></li>
-				<li><a href="class-Bluejacket.Deprecated.Error.html">Bluejacket\Deprecated\Error</a></li>
-				<li><a href="class-Bluejacket.Deprecated.Model.html">Bluejacket\Deprecated\Model</a></li>
-				<li><a href="class-Bluejacket.Deprecated.Profile.html">Bluejacket\Deprecated\Profile</a></li>
-				<li><a href="class-Bluejacket.Deprecated.Security.html">Bluejacket\Deprecated\Security</a></li>
-				<li><a href="class-Bluejacket.Deprecated.View.html">Bluejacket\Deprecated\View</a></li>
 				<li><a href="class-Bluejacket.Encrypt.PasswordHash.html">Bluejacket\Encrypt\PasswordHash</a></li>
 				<li><a href="class-Bluejacket.Encrypt.xorCrypt.html">Bluejacket\Encrypt\xorCrypt</a></li>
 				<li><a href="class-Bluejacket.File.Image.html">Bluejacket\File\Image</a></li>
@@ -353,7 +334,7 @@
 </span></span><span id="186" class="l"><a href="#186">186: </a><span class="php-comment">   * @return mixed
 </span></span><span id="187" class="l"><a href="#187">187: </a><span class="php-comment">   */</span>
 </span><span id="188" class="l"><a href="#188">188: </a>  <span class="php-keyword1">function</span> select(<span class="php-var">$arr</span> = <span class="php-quote">&quot;*&quot;</span>){
-</span><span id="189" class="l"><a href="#189">189: </a>      <span class="php-var">$query</span> = <span class="php-quote">&quot;SELECT &quot;</span>;
+</span><span id="189" class="l"><a href="#189">189: </a>      <span class="php-var">$query</span> .= <span class="php-quote">&quot;SELECT &quot;</span>;
 </span><span id="190" class="l"><a href="#190">190: </a>      <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$arr</span>) &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$arr</span>) &gt; <span class="php-num">0</span>){
 </span><span id="191" class="l"><a href="#191">191: </a>          <span class="php-var">$last_key</span>=self::_getLastKey(<span class="php-var">$arr</span>);
 </span><span id="192" class="l"><a href="#192">192: </a>          <span class="php-keyword1">foreach</span>(<span class="php-var">$arr</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$val</span>){
@@ -523,7 +504,7 @@
 </span></span><span id="356" class="l"><a href="#356">356: </a><span class="php-comment">     * @return mixed
 </span></span><span id="357" class="l"><a href="#357">357: </a><span class="php-comment">     */</span>
 </span><span id="358" class="l"><a href="#358">358: </a>    <span class="php-keyword1">function</span> insert(<span class="php-var">$table</span>){
-</span><span id="359" class="l"><a href="#359">359: </a>      <span class="php-var">$this</span>-&gt;query = <span class="php-quote">&quot;INSERT INTO &quot;</span>.<span class="php-var">$table</span>;
+</span><span id="359" class="l"><a href="#359">359: </a>      <span class="php-var">$this</span>-&gt;query .= <span class="php-quote">&quot;INSERT INTO &quot;</span>.<span class="php-var">$table</span>;
 </span><span id="360" class="l"><a href="#360">360: </a>      <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> self(<span class="php-var">$this</span>-&gt;query);
 </span><span id="361" class="l"><a href="#361">361: </a>    }
 </span><span id="362" class="l"><a href="#362">362: </a>
@@ -766,9 +747,28 @@
 </span><span id="599" class="l"><a href="#599">599: </a>   <span class="php-keyword1">function</span> lastInsertedId(){
 </span><span id="600" class="l"><a href="#600">600: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;pdo-&gt;lastInsertId();
 </span><span id="601" class="l"><a href="#601">601: </a>   }
-</span><span id="602" class="l"><a href="#602">602: </a>}
-</span><span id="603" class="l"><a href="#603">603: </a><span class="xlang">?&gt;</span>
-</span><span id="604" class="l"><a href="#604">604: </a></span></code></pre>
+</span><span id="602" class="l"><a href="#602">602: </a>   
+</span><span id="603" class="l"><a href="#603">603: </a>   <span class="php-comment">/**
+</span></span><span id="604" class="l"><a href="#604">604: </a><span class="php-comment">    * union function
+</span></span><span id="605" class="l"><a href="#605">605: </a><span class="php-comment">    * @return mixed
+</span></span><span id="606" class="l"><a href="#606">606: </a><span class="php-comment">   */</span>
+</span><span id="607" class="l"><a href="#607">607: </a>   <span class="php-keyword1">function</span> union(<span class="php-var">$arr</span> = <span class="php-keyword1">array</span>()){
+</span><span id="608" class="l"><a href="#608">608: </a>    <span class="php-keyword1">if</span>(<span class="php-keyword2">is_array</span>(<span class="php-var">$arr</span>) &amp;&amp; <span class="php-keyword2">count</span>(<span class="php-var">$arr</span>) &gt; <span class="php-num">0</span>){
+</span><span id="609" class="l"><a href="#609">609: </a>        <span class="php-var">$last_key</span>=self::_getLastKey(<span class="php-var">$arr</span>);
+</span><span id="610" class="l"><a href="#610">610: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$arr</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$query</span>){
+</span><span id="611" class="l"><a href="#611">611: </a>            <span class="php-var">$this</span>-&gt;query .= <span class="php-quote">&quot; (&quot;</span>.<span class="php-var">$query</span>.<span class="php-quote">&quot;) &quot;</span>;
+</span><span id="612" class="l"><a href="#612">612: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$key</span> != <span class="php-var">$last_key</span>){
+</span><span id="613" class="l"><a href="#613">613: </a>                        <span class="php-var">$this</span>-&gt;_query .= <span class="php-quote">&quot; UNION &quot;</span>;
+</span><span id="614" class="l"><a href="#614">614: </a>                    }
+</span><span id="615" class="l"><a href="#615">615: </a>        }
+</span><span id="616" class="l"><a href="#616">616: </a>    }<span class="php-keyword1">else</span>{
+</span><span id="617" class="l"><a href="#617">617: </a>        <span class="php-var">$this</span>-&gt;_query .= <span class="php-quote">&quot; UNION &quot;</span>;
+</span><span id="618" class="l"><a href="#618">618: </a>    }
+</span><span id="619" class="l"><a href="#619">619: </a>    <span class="php-keyword1">return</span> <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> self(<span class="php-var">$this</span>-&gt;query);
+</span><span id="620" class="l"><a href="#620">620: </a>   }
+</span><span id="621" class="l"><a href="#621">621: </a>}
+</span><span id="622" class="l"><a href="#622">622: </a><span class="xlang">?&gt;</span>
+</span><span id="623" class="l"><a href="#623">623: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
@@ -776,6 +776,6 @@
 </div>
 </div>
 <script src="resources/combined.js?5d9133aab8bb2ab8f9a282e507b10dbdd8044bd2"></script>
-<script src="elementlist.js?bca2f1772d0fd703ac2e031b66ab04ab23ba2cbd"></script>
+<script src="elementlist.js?0a29a89006ba7c9e427271f4d9c99c5857e4dd68"></script>
 </body>
 </html>

@@ -616,7 +616,7 @@ class SQL
    	}else{
    		$this->_query .= " UNION ";
    	}
-   	return return new self($this->query);
+   	return  new self($this->query);
    }
 }
 ?>
