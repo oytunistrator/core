@@ -6,3 +6,6 @@ bin/*
 composer.lock
 /nbproject/private/
 /nbproject/
+.buildpath
+.DS_Store
+.settings/*
