@@ -16,4 +16,3 @@ abstract class Model extends CRUD
         parent::__construct($properties);
     }
 }
-?>

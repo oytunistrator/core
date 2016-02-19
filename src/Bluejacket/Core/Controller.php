@@ -122,4 +122,3 @@ class Controller extends Core
         return key(array_slice($data, -1,1, TRUE));
    }    
 }
-?>

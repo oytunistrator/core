@@ -1,9 +1,9 @@
 <?php
 namespace Bluejacket\Web;
 /**
- * ArrayToObject class
+ * ArrayObject class
  */
-class ArrayToObject {
+class ArrayObject {
   function __construct($members = array()) {
     foreach ($members as $name => $value) {
       self::$name = $value;
@@ -16,4 +16,3 @@ class ArrayToObject {
     }
   }
 }
-?>

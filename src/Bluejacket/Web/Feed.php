@@ -247,5 +247,3 @@ class Feed
 		$this->genBottom();
 	}
 }
-
-?>

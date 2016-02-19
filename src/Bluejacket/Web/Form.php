@@ -285,4 +285,3 @@ class Form
 		return $this->out;
 	}
 }
-?>

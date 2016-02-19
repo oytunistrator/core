@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Connectors;
+namespace Bluejacket\Connector;
 /**
  * MDB is MongoDB class
  */
@@ -191,4 +191,3 @@ class MDB
     return json_encode(iterator_to_array($this->result));
   }
 }
-?>

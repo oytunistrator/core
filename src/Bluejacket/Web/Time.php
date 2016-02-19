@@ -120,4 +120,3 @@ class Time
 		return false;
 	}
 }
-?>

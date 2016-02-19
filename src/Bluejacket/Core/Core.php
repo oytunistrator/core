@@ -237,5 +237,12 @@ class Core
                     break;
         }
     }
+    
+    public function __call($function_name, $args){
+    	if(is_callable(self, $function_name)){
+    		return call_user_func($function_name, $args);
+    	}else{
+    		return self;
+    	}
+    }
 }
-?>

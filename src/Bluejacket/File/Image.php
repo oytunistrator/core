@@ -138,4 +138,3 @@ class Image
 	  return true;
 	}
 }
-?>

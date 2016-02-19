@@ -527,4 +527,3 @@ class HTML
 		return $html;
 	}
 }
-?>

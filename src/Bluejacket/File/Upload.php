@@ -142,4 +142,3 @@ class Upload
 		return $new_text;
 	}
 }
-?>

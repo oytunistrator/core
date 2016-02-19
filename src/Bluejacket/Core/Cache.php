@@ -87,4 +87,3 @@ class Cache
 		ob_end_flush();
 	}
 }
-?>

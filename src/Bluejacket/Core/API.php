@@ -343,4 +343,3 @@ class API
 		return json_encode($result);
 	}
 }
-?>

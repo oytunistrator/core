@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Connectors;
+namespace Bluejacket\Connector;
 const STATUS_REPLY = '+';
 const ERROR_REPLY = '-';
 const INTEGER_REPLY = ':';
@@ -126,5 +126,3 @@ class Redis
 		}
 	}
 }
-
-?>

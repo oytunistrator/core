@@ -102,4 +102,3 @@ class CRUD
                 ->drop("TABLE",$this->table);
     }
 }
-?>

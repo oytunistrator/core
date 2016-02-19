@@ -82,4 +82,3 @@ class xorCrypt
 		return stripslashes(preg_replace('/\\x13\\x00*$/', '', $plain_text));
 	}
 }
-?>

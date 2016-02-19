@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Connectors;
+namespace Bluejacket\Connector;
 /**
  * Curl class
  */
@@ -67,4 +67,3 @@ class Curl
 		}
 	}
 }
-?>

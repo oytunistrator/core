@@ -100,4 +100,3 @@ class Boot
             var_dump($this);
     }
 }
-?>

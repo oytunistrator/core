@@ -336,4 +336,3 @@ class Table
 		return $this->_out;
 	}
 }
-?>

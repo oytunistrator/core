@@ -1,5 +1,5 @@
 <?php
-namespace Bluejacket\Connectors;
+namespace Bluejacket\Connector;
 /**
  * New SQL generator with extention PDO.
  */
@@ -619,4 +619,4 @@ class SQL
    	return  new self($this->query);
    }
 }
-?>
+
