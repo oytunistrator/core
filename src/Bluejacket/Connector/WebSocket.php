@@ -4,7 +4,6 @@ namespace Bluejacket\Connector\WebSocket;
 use Bluejacket\Core\Exception as Error;
 class WebSocket
 {
-	private static $mode = 'server';
 	private static $ip;
 	private static $port;
 	private static $sock;
@@ -15,7 +14,6 @@ class WebSocket
 				self::$k = $v;
 			}
 		}
-		self::server();
 	}
 	
 	public static function server(){
@@ -65,13 +63,12 @@ class WebSocket
 	
 	public static function connect(){
 		try{
-			/* Create a TCP/IP socket. */
 			$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 			if ($socket === false) {
 				throw new Error("socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n");
 			}
 			
-			$result = socket_connect($socket, $address, $service_port);
+			$result = socket_connect($socket, self::$ip, self::$port);
 			if ($result === false) {
 				throw new Error("socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n");
 			}
@@ -92,7 +89,7 @@ class WebSocket
 			socket_write($socket, $in, strlen($in));
 			while ($out = socket_read($socket, 2048)) {
 				if(is_callable(self::$success)){
-					call_user_func(self::$success, func_get_args(self::$success));
+					call_user_func(self::$success, array("output" => $out));
 				}else{
 					printf("LOG: %s",$e->getMessage());
 				}
@@ -101,7 +98,7 @@ class WebSocket
 			socket_close($socket);
 		}catch(Error $e){
 			if(is_callable(self::$error)){
-				call_user_func(self::$error, func_get_args(self::$error));
+				call_user_func(self::$error, array("error" => $e->getMessage()));
 			}else{
 				printf("LOG: %s",$e->getMessage());
 			}

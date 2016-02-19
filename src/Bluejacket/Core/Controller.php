@@ -3,6 +3,8 @@
  * Controller class.
  */
 namespace Bluejacket\Core;
+use Twig_Loader_Filesystem;
+use Twig_Environment;
 class Controller extends Core
 {
 	/**
@@ -120,5 +122,14 @@ class Controller extends Core
             return false;
         }
         return key(array_slice($data, -1,1, TRUE));
-   }    
+   }
+   
+   public static function twig(){
+   	$cache = CACHE ? CACHE_FOLDER : false;
+   	$loader = new Twig_Loader_Filesystem('app/view');
+   	$twig = new Twig_Environment($loader, array(
+   		'cache' => $cache
+   	));
+   	return $twig;
+   }
 }

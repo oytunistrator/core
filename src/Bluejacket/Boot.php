@@ -92,11 +92,11 @@ class Boot
                 define('CACHE_FOLDER',isset($this->app->cache) ? $this->app->cache : $this->app->application."/Cache/");
             }
         }
-
+        
         include($this->app->route);
     }
 
     public function dump(){
-            var_dump($this);
+        var_dump($this);
     }
 }
