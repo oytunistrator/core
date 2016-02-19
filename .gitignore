@@ -1,11 +1,10 @@
 vendor/
 logs/
 *.log
-bin/*
+bin/
 .DS_Store
 composer.lock
-/nbproject/private/
-/nbproject/
+nbproject/private/
+nbproject/
 .buildpath
-.DS_Store
-.settings/*
+.settings/
