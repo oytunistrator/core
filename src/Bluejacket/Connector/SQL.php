@@ -16,7 +16,7 @@ class SQL
      * @return mixed
      */
     static function connect($config){
-	try {
+		try {
             if($config['driver'] == "mysql"){
                     $array = array(
                 \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES ".$config['charset']
@@ -610,13 +610,161 @@ class SQL
    		foreach($arr as $key => $query){
    			$this->query .= " (".$query.") ";
    			if($key != $last_key){
-	                    $this->_query .= " UNION ";
-	                }
+                    $this->_query .= " UNION ";
+			}
    		}
    	}else{
    		$this->_query .= " UNION ";
    	}
-   	return  new self($this->query);
+   	return new self($this->query);
    }
+   
+   function import($fileName = null){
+   		$this->query = file_read_contents($fileName);
+   		return new self($this->query);
+   }
+   
+   function export($connection = array(), $options = array()){
+   	if($con = self::_connectCheck($connection)){
+   		$con->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_NATURAL );
+   		
+   		$nowtimename = time();
+   		$path = isset($options['path']) ? $options['path'] : basename(__FILE__).'/sql/';
+   		$file = isset($options['file']) ? $options['file'] : $nowtimename;
+   		
+   		
+   		//create/open files
+   		if ($compression) {
+   			$zp = gzopen($path.$file.'.sql.gz', "a9");
+   		} else {
+   			$handle = fopen($path.$file.'.sql','a+');
+   		}
+   		
+   		$numtypes=array('tinyint','smallint','mediumint','int','bigint','float','double','decimal','real');
+   		
+   		if(empty($tables)) {
+   			$pstm1 = $con->query('SHOW TABLES');
+   			while ($row = $pstm1->fetch(PDO::FETCH_NUM)) {
+   				$tables[] = $row[0];
+   			}
+   		} else {
+   			$tables = is_array($tables) ? $tables : explode(',',$tables);
+   		}
+   		
+   		foreach($tables as $table) {
+   			$result = $con->query("SELECT * FROM $table");
+   			$num_fields = $result->columnCount();
+   			$num_rows = $result->rowCount();
+   		
+   			$return="";
+   			
+   			if(isset($options['drop']) && $options['drop'] === true){
+   				$return.= 'DROP TABLE IF EXISTS `'.$table.'`;';
+   			}
+   		
+   			$pstm2 = $con->query("SHOW CREATE TABLE $table");
+   			$row2 = $pstm2->fetch(PDO::FETCH_NUM);
+   			$ifnotexists = str_replace('CREATE TABLE', 'CREATE TABLE IF NOT EXISTS', $row2[1]);
+   			$return.= "\n\n".$ifnotexists.";\n\n";
+   		
+   		
+   			if ($compression) {
+   				gzwrite($zp, $return);
+   			} else {
+   				fwrite($handle,$return);
+   			}
+   			$return = "";
+   		
+   			//insert values
+   			if ($num_rows){
+   				$return= 'INSERT INTO `'."$table"."` (";
+   				$pstm3 = $con->query("SHOW COLUMNS FROM $table");
+   				$count = 0;
+   				$type = array();
+   		
+   				while ($rows = $pstm3->fetch(PDO::FETCH_NUM)) {
+   		
+   					if (stripos($rows[1], '(')) {$type[$table][] = stristr($rows[1], '(', true);
+   					} else $type[$table][] = $rows[1];
+   		
+   					$return.= "`".$rows[0]."`";
+   					$count++;
+   					if ($count < ($pstm3->rowCount())) {
+   						$return.= ", ";
+   					}
+   				}
+   		
+   				$return.= ")".' VALUES';
+   		
+   				if ($compression) {
+   					gzwrite($zp, $return);
+   				} else {
+   					fwrite($handle,$return);
+   				}
+   				$return = "";
+   			}
+   			$count =0;
+   			while($row = $result->fetch(PDO::FETCH_NUM)) {
+   				$return= "\n\t(";
+   		
+   				for($j=0; $j<$num_fields; $j++) {
+   		
+   					//$row[$j] = preg_replace("\n","\\n",$row[$j]);
+   		
+   		
+   					if (isset($row[$j])) {
+   		
+   						//if number, take away "". else leave as string
+   						if ((in_array($type[$table][$j], $numtypes)) && (!empty($row[$j]))) $return.= $row[$j] ; else $return.= $DBH->quote($row[$j]);
+   		
+   					} else {
+   						$return.= 'NULL';
+   					}
+   					if ($j<($num_fields-1)) {
+   						$return.= ',';
+   					}
+   				}
+   				$count++;
+   				if ($count < ($result->rowCount())) {
+   					$return.= "),";
+   				} else {
+   					$return.= ");";
+   		
+   				}
+   				if ($compression) {
+   					gzwrite($zp, $return);
+   				} else {
+   					fwrite($handle,$return);
+   				}
+   				$return = "";
+   			}
+   			if ($compression) {
+   				gzwrite($zp, $return);
+   			} else {
+   				fwrite($handle,$return);
+   			}
+   			$return = "";
+   		}
+   		
+   		
+   		$this->error = array();
+   		$this->error[] = $pstm2->errorInfo();
+   		$this->error[] = $pstm3->errorInfo();
+   		$this->error[] = $result->errorInfo();
+   		
+   		if ($compression) {
+   			gzclose($zp);
+   		} else {
+   			fclose($handle);
+   		}
+   	}
+   	return new self($return);
+   }
+   
+   function showQuery(){
+   	return $this->query;
+   }
+   
+   
 }
 
