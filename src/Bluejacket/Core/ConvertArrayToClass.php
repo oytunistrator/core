@@ -1,9 +1,9 @@
 <?php
-namespace Bluejacket\Web;
+namespace Bluejacket\Core;
 /**
- * ArrayObject class
+ * ConvertArrayToClass class
  */
-class ArrayObject {
+class ConvertArrayToClass {
   function __construct($members = array()) {
     foreach ($members as $name => $value) {
       self::$name = $value;
