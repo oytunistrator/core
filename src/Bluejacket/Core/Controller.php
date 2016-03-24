@@ -123,6 +123,16 @@ class Controller extends Core
         }
         return key(array_slice($data, -1,1, TRUE));
    }
+
+   public function useMethod($libname = null,$options = array()){
+    if($libname != null){
+        if(is_array($options) && count($options) > 0){
+            $this->{$libname} = new $libname($options);
+        }else{
+            $this->{$libname} = new $libname;
+        }
+    }
+   }
    
    public static function twig(){
    	$cache = CACHE ? CACHE_FOLDER : false;
