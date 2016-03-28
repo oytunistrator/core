@@ -1,2 +1,0 @@
-# API
-Bluejacket Core API
