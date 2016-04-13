@@ -3,8 +3,7 @@
  * HTML class.
  */
 namespace Bluejacket\Web;
-class HTML
-{
+class HTML {
 
 	/**
 	 * __construct function.
@@ -13,14 +12,14 @@ class HTML
 	 * @param array $config (default: array())
 	 * @return void
 	 */
-	function __construct(array $config = array()){
-		foreach($config as $key => $val){
-			$this->{$key} = $val;
+	function __construct(array $config = array()) {
+		foreach ($config as $key => $val) {
+			$this->{ $key} = $val;
 		}
 
-		if(isset($this->folder)){
+		if (isset($this->folder)) {
 			$this->baseFolder = "/".$this->folder."/";
-		}else{
+		} else {
 			$this->baseFolder = "/";
 		}
 	}
@@ -32,7 +31,7 @@ class HTML
 	 * @param mixed $title
 	 * @return void
 	 */
-	public function title($title){
+	public function title($title) {
 		return '<title>'.$title.'</title>'."";
 
 	}
@@ -44,7 +43,7 @@ class HTML
 	 * @param mixed $keywords
 	 * @return void
 	 */
-	public function keywords($keywords){
+	public function keywords($keywords) {
 		return "<meta name=\"keywords\" content=\"".$keywords."\" />";
 	}
 
@@ -55,7 +54,7 @@ class HTML
 	 * @param mixed $author
 	 * @return void
 	 */
-	public function author($author){
+	public function author($author) {
 		return "<meta name=\"author\" content=\"".$author."\" />";
 	}
 
@@ -66,15 +65,15 @@ class HTML
 	 * @param mixed $desc
 	 * @return void
 	 */
-	public function description($desc){
+	public function description($desc) {
 		return "<meta name=\"description\" content=\"".$desc."\" />";
 	}
 
-	public function meta($name,$content,$adds=array()){
+	public function meta($name, $content, $adds = array()) {
 		$add = null;
-		if(is_array($adds)){
-			foreach($adds as $addKey => $addValue){
-				$add.="".$addKey."=\"".$addValue."\" ";
+		if (is_array($adds)) {
+			foreach ($adds as $addKey => $addValue) {
+				$add .= "".$addKey."=\"".$addValue."\" ";
 			}
 		}
 		return "<meta name=\"".$name."\" content=\"".$content."\" ".$add."/>";
@@ -87,7 +86,7 @@ class HTML
 	 * @static
 	 * @return void
 	 */
-	public static function html_start(){
+	public static function html_start() {
 		return '<!DOCTYPE html>'."\n".'<html>'."";
 	}
 
@@ -98,7 +97,7 @@ class HTML
 	 * @static
 	 * @return void
 	 */
-	public static function html_end(){
+	public static function html_end() {
 		return '</html>';
 	}
 
@@ -109,7 +108,7 @@ class HTML
 	 * @static
 	 * @return void
 	 */
-	public static function body_start(){
+	public static function body_start() {
 		return '<body>';
 	}
 
@@ -120,11 +119,9 @@ class HTML
 	 * @static
 	 * @return void
 	 */
-	public static function body_end(){
+	public static function body_end() {
 		return '</body>';
 	}
-
-
 
 	/**
 	 * js function.
@@ -133,14 +130,16 @@ class HTML
 	 * @param array $options (default: array())
 	 * @return void
 	 */
-	public function js(array $options = array()){
+	public function js(array $options = array()) {
 		$path = $this->baseFolder;
-		if(isset($options['folder'])) $path .= $options['folder'];
-		if(isset($options['file'])) $path .= $options['file'];
+		if (isset($options['folder'])) {$path .= $options['folder'];
+		}
+
+		if (isset($options['file'])) {$path .= $options['file'];
+		}
+
 		return '<script type="text/javascript" src="'.$path.'"></script>';
 	}
-
-
 
 	/**
 	 * css function.
@@ -149,13 +148,16 @@ class HTML
 	 * @param array $options (default: array())
 	 * @return void
 	 */
-	public function css(array $options = array()){
+	public function css(array $options = array()) {
 		$path = $this->baseFolder;
-		if(isset($options['folder'])) $path .= $options['folder'];
-		if(isset($options['file'])) $path .= $options['file'];
-		return'<link rel="stylesheet" type="text/css" href="'.$path.'"/>';
-	}
+		if (isset($options['folder'])) {$path .= $options['folder'];
+		}
 
+		if (isset($options['file'])) {$path .= $options['file'];
+		}
+
+		return '<link rel="stylesheet" type="text/css" href="'.$path.'"/>';
+	}
 
 	/**
 	 * charset function.
@@ -165,12 +167,11 @@ class HTML
 	 * @param mixed $type
 	 * @return void
 	 */
-	public static function charset($type){
-		if(isset($type) && $type!=null){
+	public static function charset($type) {
+		if (isset($type) && $type != null) {
 			return '<meta http-equiv="content-type" content="text/html;charset='.$type.'" />';
 		}
 	}
-
 
 	/**
 	 * p_start function.
@@ -179,7 +180,7 @@ class HTML
 	 * @static
 	 * @return void
 	 */
-	public static function p_start(){
+	public static function p_start() {
 		return "<p>\n";
 	}
 
@@ -190,7 +191,7 @@ class HTML
 	 * @static
 	 * @return void
 	 */
-	public static function p_end(){
+	public static function p_end() {
 		return "</p>\n";
 	}
 
@@ -202,10 +203,9 @@ class HTML
 	 * @param mixed $text
 	 * @return void
 	 */
-	public static function b($text){
+	public static function b($text) {
 		return "<strong>".$text."</strong>\n";
 	}
-
 
 	/**
 	 * h function.
@@ -216,14 +216,13 @@ class HTML
 	 * @param mixed $w (default: null)
 	 * @return void
 	 */
-	public static function h($text,$w=null){
-		if(isset($w)){
+	public static function h($text, $w = null) {
+		if (isset($w)) {
 			return "<h".$w.">".$text."</h".$w.">\n";
-		}else{
+		} else {
 			return "<h1>".$text."</h1>\n";
 		}
 	}
-
 
 	/**
 	 * getTextToHTML function.
@@ -232,11 +231,11 @@ class HTML
 	 * @param mixed $file
 	 * @return void
 	 */
-	public function getTextToHTML($file){
-		if(file_exists($file)){
-			$fo=fopen($file,"r");
-			$fs=filesize($file);
-			$fget=fread($fo,$fs);
+	public function getTextToHTML($file) {
+		if (file_exists($file)) {
+			$fo   = fopen($file, "r");
+			$fs   = filesize($file);
+			$fget = fread($fo, $fs);
 			fclose($fo);
 			return nl2br($fget);
 		}
@@ -250,7 +249,7 @@ class HTML
 	 * @param mixed $filename
 	 * @return void
 	 */
-	public function favicon(array $options = array()){
+	public function favicon(array $options = array()) {
 		return "<link rel='shortcut icon' href='/".$options['folder'].$options['file']."'  />\n";
 	}
 
@@ -262,7 +261,7 @@ class HTML
 	 * @param mixed $time
 	 * @return void
 	 */
-	public function redirect($url,$time){
+	public function redirect($url, $time) {
 		return '<meta http-equiv="refresh" content="'.$time.';URL='.$url.'" />'."\n";
 	}
 
@@ -273,7 +272,7 @@ class HTML
 	 * @param mixed $url
 	 * @return void
 	 */
-	public function jsdirect($url){
+	public function jsdirect($url) {
 		return '<script>window.location=\''.$url.'\'</script>';
 	}
 
@@ -284,7 +283,7 @@ class HTML
 	 * @param mixed $url
 	 * @return void
 	 */
-	public function direct($url){
+	public function direct($url) {
 		header("Location: ".$url);
 	}
 
@@ -296,8 +295,8 @@ class HTML
 	 * @param mixed $class (default: null)
 	 * @return void
 	 */
-	public function back($content,$class=null){
-		echo "<a href='javascript:history.go(-1);' ".(!is_null($class) ? "class='".$class."'" : null).">".$content."</a>";
+	public function back($content, $class = null) {
+		echo "<a href='javascript:history.go(-1);' ".(!is_null($class)?"class='".$class."'":null).">".$content."</a>";
 	}
 
 	/**
@@ -307,7 +306,7 @@ class HTML
 	 * @param mixed $msg
 	 * @return void
 	 */
-	public function alert($msg){
+	public function alert($msg) {
 		return "alert('".$msg."');";
 	}
 
@@ -318,10 +317,9 @@ class HTML
 	 * @param mixed $url
 	 * @return void
 	 */
-	public function load($url){
+	public function load($url) {
 		return "<script src=\"".$url."\"></script>";
 	}
-
 
 	/**
 	 * json function.
@@ -332,10 +330,10 @@ class HTML
 	 * @param bool $encode (default: true)
 	 * @return void
 	 */
-	public static function json($object,$encode=true){
-		if($encode){
+	public static function json($object, $encode = true) {
+		if ($encode) {
 			return json_encode($object);
-		}else{
+		} else {
 			return json_decode($object);
 		}
 	}
@@ -347,22 +345,21 @@ class HTML
 	 * @param mixed $model
 	 * @return void
 	 */
-	public function generateTags($model){
-		$mod = new Model($model);
-		$data = $mod->__oget(null,array("tag",true),null);
-		$last_key=key(array_slice($data, -1,1, TRUE));
+	public function generateTags($model) {
+		$mod      = new Model($model);
+		$data     = $mod->__oget(null, array("tag", true), null);
+		$last_key = key(array_slice($data, -1, 1, TRUE));
 
-		$i=0;
-		while($i<count($data)){
-			$output.=$data[$i]['tag'];
-			if($i!=$last_key){
-				$output.=", ";
+		$i = 0;
+		while ($i < count($data)) {
+			$output .= $data[$i]['tag'];
+			if ($i != $last_key) {
+				$output .= ", ";
 			}
 			$i++;
 		}
 		return $output;
 	}
-
 
 	/**
 	 * head function.
@@ -371,51 +368,51 @@ class HTML
 	 * @param array $config (default: array())
 	 * @return void
 	 */
-	public function head(array $config = array()){
+	public function head(array $config = array()) {
 		$html = null;
 		$html .= "<head>";
-		if(isset($config['charset'])){
+		if (isset($config['charset'])) {
 			$html .= $this->charset($config['charset']);
 		}
-		if(isset($config['title'])){
+		if (isset($config['title'])) {
 			$html .= $this->title($config['title']);
 		}
-		if(isset($config['favicon'])){
+		if (isset($config['favicon'])) {
 			$html .= $this->favicon(array("file" => $config['favicon']));
 		}
-		if(is_array($config['keywords'])){
-			foreach($config['keywords'] as $keyword){
+		if (is_array($config['keywords'])) {
+			foreach ($config['keywords'] as $keyword) {
 				$kwGen .= $keyword;
-				if(end($config['keywords']) != $keyword){
+				if (end($config['keywords']) != $keyword) {
 					$kwGen .= ",";
 				}
 			}
 			$html .= $this->keywords($kwGen);
 		}
-		if(isset($config['description'])){
+		if (isset($config['description'])) {
 			$html .= $this->description($config['description']);
 		}
-		if(is_array($config['meta'])){
-			foreach($config['meta'] as $metaKey => $metaContent){
+		if (is_array($config['meta'])) {
+			foreach ($config['meta'] as $metaKey => $metaContent) {
 				$html .= $this->meta($metaKey, $metaContent);
 			}
 		}
-		if(is_array($config['author'])){
+		if (is_array($config['author'])) {
 			$html .= $this->author($config['author']);
 		}
-		if(isset($config['before'])){
+		if (isset($config['before'])) {
 			$html .= $config['before'];
 		}
-		if(isset($config['bower'])){
+		if (isset($config['bower'])) {
 			$html .= $this->bower($config['bower']);
 		}
-		if(is_array($config['autoLoad'])){
-			foreach($config['autoLoad'] as $folder){
+		if (is_array($config['autoLoad'])) {
+			foreach ($config['autoLoad'] as $folder) {
 				$fl = scandir($folder);
-				foreach($fl as $f){
+				foreach ($fl as $f) {
 					$info = pathinfo($folder.$f);
-					if(isset($info['extension'])){
-						switch($info['extension']){
+					if (isset($info['extension'])) {
+						switch ($info['extension']) {
 							case "js":
 								$html .= $this->js(array("file" => $folder.$f));
 								break;
@@ -429,14 +426,13 @@ class HTML
 				}
 			}
 		}
-		if(isset($config['end'])){
+		if (isset($config['end'])) {
 			$html .= $config['end'];
 		}
 
 		$html .= "</head>";
 		return $html;
 	}
-
 
 	/**
 	 * bower function.
@@ -445,26 +441,26 @@ class HTML
 	 * @param mixed $folder
 	 * @return void
 	 */
-	public function bower($folder){
-		if(is_array($folder)){
-			$fol = $folder[0];
+	public function bower($folder) {
+		if (is_array($folder)) {
+			$fol      = $folder[0];
 			$bowerArr = $folder[1];
-		}else{
+		} else {
 			$fol = $folder;
 		}
 
 		$html = null;
-		if(is_array($bowerArr)){
-			foreach($bowerArr as $f){
-				if(is_file($fol.$f."/bower.json")){
+		if (is_array($bowerArr)) {
+			foreach ($bowerArr as $f) {
+				if (is_file($fol.$f."/bower.json")) {
 					$mainFiles = json_decode(file_get_contents($fol.$f."/bower.json"));
 
-					if(is_array($mainFiles->main)){
-						foreach($mainFiles->main as $file){
+					if (is_array($mainFiles->main)) {
+						foreach ($mainFiles->main as $file) {
 							$fileName = $fol.$f."/".$file;
 
 							$info = pathinfo($fileName);
-							switch($info['extension']){
+							switch ($info['extension']) {
 								case "js":
 									$html .= $this->js(array("file" => $fileName));
 									break;
@@ -473,11 +469,11 @@ class HTML
 									break;
 							}
 						}
-					}else{
+					} else {
 						$fileName = $fol.$f."/".$mainFiles->main;
 
 						$info = pathinfo($fileName);
-						switch($info['extension']){
+						switch ($info['extension']) {
 							case "js":
 								$html .= $this->js(array("file" => $fileName));
 								break;
@@ -488,18 +484,18 @@ class HTML
 					}
 				}
 			}
-		}else{
+		} else {
 			$fl = scandir($fol);
-			foreach($fl as $f){
-				if(is_file($fol.$f."/bower.json")){
+			foreach ($fl as $f) {
+				if (is_file($fol.$f."/bower.json")) {
 					$mainFiles = json_decode(file_get_contents($fol.$f."/bower.json"));
 
-					if(is_array($mainFiles->main)){
-						foreach($mainFiles->main as $file){
+					if (is_array($mainFiles->main)) {
+						foreach ($mainFiles->main as $file) {
 							$fileName = $fol.$f."/".$file;
 
 							$info = pathinfo($fileName);
-							switch($info['extension']){
+							switch ($info['extension']) {
 								case "js":
 									$html .= $this->js(array("file" => $fileName));
 									break;
@@ -508,11 +504,11 @@ class HTML
 									break;
 							}
 						}
-					}else{
+					} else {
 						$fileName = $fol.$f."/".$mainFiles->main;
 
 						$info = pathinfo($fileName);
-						switch($info['extension']){
+						switch ($info['extension']) {
 							case "js":
 								$html .= $this->js(array("file" => $fileName));
 								break;

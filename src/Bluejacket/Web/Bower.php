@@ -3,8 +3,7 @@
  * Bower class.
  */
 namespace Bluejacket\Web;
-class Bower
-{
+class Bower {
 	/**
 	 * componentsFolder
 	 *
@@ -13,7 +12,7 @@ class Bower
 	 * @var string
 	 * @access public
 	 */
-	public $componentsFolder='bower_components';
+	public $componentsFolder = 'bower_components';
 	/**
 	 * folder
 	 *
@@ -22,7 +21,7 @@ class Bower
 	 * @var mixed
 	 * @access public
 	 */
-	public $folder=null;
+	public $folder = null;
 	/**
 	 * html
 	 *
@@ -31,7 +30,7 @@ class Bower
 	 * @var mixed
 	 * @access public
 	 */
-	public $html=null;
+	public $html = null;
 
 	/**
 	 * __construct function.
@@ -42,22 +41,21 @@ class Bower
 	 * @param mixed $componentsFolder (default: null)
 	 * @return void
 	 */
-	function __construct($name,$target=null,$componentsFolder=null){
-		if(!is_null($componentsFolder)){
+	function __construct($name, $target = null, $componentsFolder = null) {
+		if (!is_null($componentsFolder)) {
 			$this->folder .= $componentsFolder;
-		}else{
+		} else {
 			$this->folder .= $this->componentsFolder;
 		}
 
-		if(isset($name)){
+		if (isset($name)) {
 			$this->folder .= "/".$name;
 		}
 
-		if(!is_null($target)){
+		if (!is_null($target)) {
 			$this->folder .= "/".$target;
 		}
 	}
-
 
 	/**
 	 * generate function.
@@ -67,26 +65,26 @@ class Bower
 	 * @param array $type (default: array())
 	 * @return void
 	 */
-	public function generate($files = array(),$type = array()){
-		if(is_array($type)){
-			foreach($type as $t){
-				if($t=="css"){
-					if(is_array($files)){
-						foreach($files as $file){
+	public function generate($files = array(), $type = array()) {
+		if (is_array($type)) {
+			foreach ($type as $t) {
+				if ($t == "css") {
+					if (is_array($files)) {
+						foreach ($files as $file) {
 							$this->html .= $this->css($this->folder."/".$file.".css");
 						}
-					}else{
+					} else {
 						$this->html .= $this->css($this->folder."/".$files.".css");
 					}
 
 				}
 
-				if($t=="js"){
-					if(is_array($files)){
-						foreach($files as $file){
+				if ($t == "js") {
+					if (is_array($files)) {
+						foreach ($files as $file) {
 							$this->html .= $this->js($this->folder."/".$file.".js");
 						}
-					}else{
+					} else {
 						$this->html .= $this->js($this->folder."/".$files.".js");
 					}
 
@@ -96,7 +94,6 @@ class Bower
 		return $this->html;
 	}
 
-
 	/**
 	 * css function.
 	 *
@@ -104,8 +101,8 @@ class Bower
 	 * @param mixed $obje
 	 * @return void
 	 */
-	public function css($obje){
-		if(isset($obje) && $obje!=null){
+	public function css($obje) {
+		if (isset($obje) && $obje != null) {
 			return '<link rel="stylesheet" type="text/css" href="/'.$obje.'"/>';
 		}
 	}
@@ -117,8 +114,8 @@ class Bower
 	 * @param mixed $obje
 	 * @return void
 	 */
-	public function js($obje){
-		if(isset($obje) && $obje!=null){
+	public function js($obje) {
+		if (isset($obje) && $obje != null) {
 			return '<script type="text/javascript" src="/'.$obje.'"></script>';
 		}
 	}

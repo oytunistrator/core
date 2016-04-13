@@ -3,36 +3,35 @@ namespace Bluejacket\Web;
 /**
  * Time conversion class
  */
-class Time
-{
-	function __construct($date = array(),$timezone = null){
-		if(!is_null($timezone)){
+class Time {
+	function __construct($date = array(), $timezone = null) {
+		if (!is_null($timezone)) {
 			date_default_timezone_set($timezone);
-		}else{
+		} else {
 			date_default_timezone_set('UTC');
 		}
 
-		if(is_array($date) && count($date) > 0){
+		if (is_array($date) && count($date) > 0) {
 			$this->date = $this->_set($date);
-		}else{
+		} else {
 			$this->date = date();
 		}
 	}
 
-/**
- * date set from array
- * @param array $date
- */
-	function _set($date = array()){
-		if(is_array($date) && count($date) > 0){
-			$day = $date['day'];
-			$month = $date['month'];
-			$year = $date['year'];
-			$hour = $date['hour'];
+	/**
+	 * date set from array
+	 * @param array $date
+	 */
+	function _set($date = array()) {
+		if (is_array($date) && count($date) > 0) {
+			$day    = $date['day'];
+			$month  = $date['month'];
+			$year   = $date['year'];
+			$hour   = $date['hour'];
 			$minute = $date['minute'];
 			$second = $date['second'];
 
-			return mktime($hour,$minute, $second, $month, $day, $year);
+			return mktime($hour, $minute, $second, $month, $day, $year);
 		}
 		return false;
 	}
@@ -43,11 +42,11 @@ class Time
 	 * @param string $second
 	 * @return mixed
 	 */
-	function _remove($first = null, $second = null){
-		if(!is_null($first) && !is_null($second)){
+	function _remove($first = null, $second = null) {
+		if (!is_null($first) && !is_null($second)) {
 			$ft = strtotime($first);
 			$st = strtotime($second);
-			return $st - $ft;
+			return $st-$ft;
 		}
 		return false;
 	}
@@ -58,11 +57,11 @@ class Time
 	 * @param string $second
 	 * @return mixed
 	 */
-	function _add($first = null, $second = null){
-		if(!is_null($first) && !is_null($second)){
+	function _add($first = null, $second = null) {
+		if (!is_null($first) && !is_null($second)) {
 			$ft = strtotime($first);
 			$st = strtotime($second);
-			return $st + $ft;
+			return $st+$ft;
 		}
 		return false;
 	}
@@ -72,8 +71,8 @@ class Time
 	 * @param  string $timezone
 	 * @return boolean
 	 */
-	function timezone($timezone = null){
-		if(is_null($timezone)){
+	function timezone($timezone = null) {
+		if (is_null($timezone)) {
 			date_default_timezone_set($timezone);
 			return true;
 		}
@@ -85,8 +84,8 @@ class Time
 	 * @param  string $string
 	 * @return mixed
 	 */
-	function convert($string = null){
-		if(!is_null($string)){
+	function convert($string = null) {
+		if (!is_null($string)) {
 			return date($string, $this->date);
 		}
 		return false;
@@ -99,8 +98,8 @@ class Time
 	 * @param  string $second
 	 * @return mixed
 	 */
-	function diff($result = null, $first = null, $second = null){
-		if(!is_null($result) && !is_null($first) && !is_null($second)){
+	function diff($result = null, $first = null, $second = null) {
+		if (!is_null($result) && !is_null($first) && !is_null($second)) {
 			return date($result, $this->_remove($first, $second));
 		}
 		return false;
@@ -113,8 +112,8 @@ class Time
 	 * @param  string $second
 	 * @return mixed
 	 */
-	function add($result = null, $first = null, $second = null){
-		if(!is_null($result) && !is_null($first) && !is_null($second)){
+	function add($result = null, $first = null, $second = null) {
+		if (!is_null($result) && !is_null($first) && !is_null($second)) {
 			return date($result, $this->_add($first, $second));
 		}
 		return false;
